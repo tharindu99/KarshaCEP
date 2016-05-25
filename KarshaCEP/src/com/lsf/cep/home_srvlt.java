@@ -33,7 +33,8 @@ public class home_srvlt extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
-		
+		DBopenConnection DB_con = new DBopenConnection();
+		DB_con.DBopen_me();
 		System.out.println("we ready...............");
 	}
 
