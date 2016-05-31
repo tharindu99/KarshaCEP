@@ -13,4 +13,8 @@
     <servlet-name>home_srvlt</servlet-name>
     <servlet-class>com.lsf.cep.home_srvlt</servlet-class>
   </servlet>
+  <servlet-mapping>
+  	<servlet-name>home_srvlt</servlet-name>
+  	<url-pattern>/stockprice</url-pattern>
+  </servlet-mapping>
 </web-app>
