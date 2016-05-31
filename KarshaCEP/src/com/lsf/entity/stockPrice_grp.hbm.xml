@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 31, 2016 11:41:43 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.lsf.entity.stockPrice_grp" table="STOCKPRICE_GRP">
+        <id name="AllDates" type="java.lang.String">
+            <column name="ALLDATES" />
+            <generator class="assigned" />
+        </id>
+        <property name="PRC" type="java.lang.Double">
+            <column name="PRC" />
+        </property>
+        <property name="PseudoPRC" type="java.lang.Double">
+            <column name="PSEUDOPRC" />
+        </property>
+        <property name="Turnover" type="java.lang.Double">
+            <column name="TURNOVER" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

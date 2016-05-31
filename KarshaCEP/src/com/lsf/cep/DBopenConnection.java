@@ -9,13 +9,14 @@ import org.hibernate.cfg.Configuration;
 
 import com.lsf.entity.Stock;
 
+
 public class DBopenConnection {
+	SessionFactory Sfact;
+	Session session;
 	public void DBopen_me() {
-		SessionFactory SFact = new Configuration().configure().buildSessionFactory();
-		Session session = SFact.openSession();
-		org.hibernate.Transaction tx = session.beginTransaction();
-		
-		List<Stock> stk = session.createSQLQuery("SELECT * FROM stock").addEntity(Stock.class).list();
-		System.out.println(stk.get(0).getPrc());
+		 Sfact = new Configuration().configure().buildSessionFactory();
+		 session = Sfact.openSession();
+		/*List<Stock> stk = session.createSQLQuery("SELECT * FROM stock").addEntity(Stock.class).list();
+		System.out.println(stk.get(0).getPrc());*/
 	}
 }

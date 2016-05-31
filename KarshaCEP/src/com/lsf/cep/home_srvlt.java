@@ -1,6 +1,8 @@
 package com.lsf.cep;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
@@ -42,7 +44,17 @@ public class home_srvlt extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		String userPath = request.getServletPath();
+		PrintWriter pwr = response.getWriter();
+		graph_predata grp = new graph_predata();
+		if (userPath.equals("/stockprice")) {
+			int PERMNO = Integer.parseInt(request.getParameter("PERMNO"));
+			pwr.print(grp.draw_stockprice(PERMNO));
+		} else if (userPath.equals("/rangeData")) {
+			
+
+		}
 	}
 
 	/**
