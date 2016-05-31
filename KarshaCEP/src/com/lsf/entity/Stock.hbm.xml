@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 31, 2016 9:31:24 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Stock" table="stock" catalog="karshacep">
+        <composite-id name="id" class="StockId">
+            <key-property name="permno" type="int">
+                <column name="PERMNO" />
+            </key-property>
+            <key-property name="date" type="string">
+                <column name="date" />
+            </key-property>
+        </composite-id>
+        <property name="prc" type="java.lang.Double">
+            <column name="PRC" precision="22" scale="0" />
+        </property>
+        <property name="ret" type="java.lang.Double">
+            <column name="RET" precision="22" scale="0" />
+        </property>
+        <property name="shrout" type="java.lang.Integer">
+            <column name="SHROUT" />
+        </property>
+        <property name="vol" type="java.lang.Integer">
+            <column name="VOL" />
+        </property>
+        <property name="pseudoPrc" type="java.lang.Double">
+            <column name="`Pseudo-PRC`" precision="22" scale="0" />
+        </property>
+        <property name="pseudoPrcn" type="java.lang.Double">
+            <column name="PseudoPRCn" precision="22" scale="0" />
+        </property>
+        <property name="rawVol" type="java.lang.Integer">
+            <column name="RawVol" />
+        </property>
+        <property name="turnover" type="java.lang.Double">
+            <column name="Turnover" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>
