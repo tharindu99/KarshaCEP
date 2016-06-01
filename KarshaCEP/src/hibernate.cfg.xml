@@ -11,5 +11,6 @@
   <property name="show_sql">true</property>
   <mapping class="com.lsf.entity.Stock"/>
   <mapping class="com.lsf.entity.stockPrice_grp"/>
+  <mapping class="com.lsf.entity.StockDetails"/>
  </session-factory>
 </hibernate-configuration>

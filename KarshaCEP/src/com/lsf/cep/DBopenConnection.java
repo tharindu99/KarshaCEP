@@ -19,4 +19,7 @@ public class DBopenConnection {
 		/*List<Stock> stk = session.createSQLQuery("SELECT * FROM stock").addEntity(Stock.class).list();
 		System.out.println(stk.get(0).getPrc());*/
 	}
+	public void DBclose_me() {
+		session.close();
+	}
 }

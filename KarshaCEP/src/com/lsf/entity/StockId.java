@@ -1,7 +1,7 @@
 package com.lsf.entity;
 
 // default package
-// Generated May 31, 2016 9:31:23 AM by Hibernate Tools 4.0.0
+// Generated May 31, 2016 3:23:31 PM by Hibernate Tools 4.0.0
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

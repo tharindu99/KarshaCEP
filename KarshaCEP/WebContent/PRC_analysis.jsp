@@ -1,3 +1,6 @@
+<%@page import="com.lsf.entity.StockDetails"%>
+<%@page import="java.util.List"%>
+<%@page import="com.lsf.cep.graph_predata"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -14,6 +17,10 @@
 <link href="css/navbar.css" rel="stylesheet">
 <link href="css/c3.css" rel="stylesheet">
 </head>
+
+<% graph_predata grp = new graph_predata();
+   List<StockDetails> stk_data = grp.stock_details();
+%>
 <body>
 	<div class="container">
 		<!-- Static navbar -->
@@ -45,27 +52,24 @@
 				major 10 equities [Market Capitalization].
 			</p>
 			<ul class="nav nav-tabs">
-				<li id="m1" class="active"><a href="#C70519"><b>C</b>:70519</a></li>
-				<li id="m2"><a href="#WFC38703"><b>WFC</b>:38703</a></li>
-				<li id="m3"><a href="#BAC59408"><b>BAC</b>:59408</a></li>
-				<li id="m4"><a href="#JPM47896"><b>JPM</b>:47896</a></li>
-				<li id="m5"><a href="#AIG66800"><b>AIG</b>:66800</a></li>
-				<li id="m6"><a href="#MWD69032"><b>MWD</b>:69032</a></li>
-				<li id="m7"><a href="#WB36469"><b>WB</b>:36469</a></li>
-				<li id="m8"><a href="#AXP59176"><b>AXP</b>:59176</a></li>
-				<li id="m9"><a href="#GS86868"><b>GS</b>:86868</a></li>
-				<li id="m10"><a href="#V92611"><b>V</b>:92611</a></li>
+			<% for(int i=0;i<stk_data.size();i++){ 
+				String id = "\"m"+(i+1)+"\"";
+				String permno  = "\"#"+stk_data.get(i).getTsymbol()+stk_data.get(i).getPermno()+"\"";
+			%>			
+				<li id=<%=id %>><a href=<%=permno %>><b><%=stk_data.get(i).getTsymbol()%></b>:<%=stk_data.get(i).getPermno()%></a></li>
+			<%}; %>
 			</ul>
 			<div class="tab-content">
-				<div id="C70519" class="tab-pane fade in active">
+			<%for(int i=0;i<stk_data.size();i++){ %>
+				<div id="<%=stk_data.get(i).getTsymbol()%><%=stk_data.get(i).getPermno()%>" class="tab-pane fade">
 					<div style="border-style: groove;">
-						<h4>
-							<center>PERMNO : 70519 - CITIGROUP INC : C</center>
-						</h4>
-						<div id="C"></div>
+						<h4><center>PERMNO : <%=stk_data.get(i).getPermno()%> - <%=stk_data.get(i).getComnam()%> : <%=stk_data.get(i).getTsymbol()%></center></h4>
+						<div id="<%=stk_data.get(i).getTsymbol() %>"></div>
 					</div>
 				</div>
-				3
+			<%}; %>
+			
+			
 			</div>
 					<script src="js/jquery.min.js"></script>
 					<script>
@@ -77,12 +81,21 @@
 					<script src="js/d3.min.js"></script>
    					<script src="js/c3.js"></script>
 					<script type="text/javascript" src="js/graph/stockPrice_grp.js"></script>
+					<script type="text/javascript">
+						<%for(int i=1;i<stk_data.size();i++){%>
+							$("#m<%=(i+1)%>").click(function(){
+								StockPRC_graph(<%=stk_data.get(i).getPermno()%>, '#<%=stk_data.get(i).getTsymbol()%>');
+							});
+					 	<%};%>
+					</script>
 					<script>
 						$(document).ready(function() {
 							$(".nav-tabs a").click(function() {
 								$(this).tab('show');
 							});
-							StockPRC_graph(70519, '#C');
+							$( "#m1" ).last().addClass( "active" );
+							$( "#<%=stk_data.get(0).getTsymbol()%><%=stk_data.get(0).getPermno()%>" ).last().addClass( "tab-pane fade in active" );
+							StockPRC_graph(<%=stk_data.get(0).getPermno()%>, '#<%=stk_data.get(0).getTsymbol()%>');
 						});
 					</script>
 </body>

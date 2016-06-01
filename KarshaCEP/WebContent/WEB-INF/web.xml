@@ -16,5 +16,6 @@
   <servlet-mapping>
   	<servlet-name>home_srvlt</servlet-name>
   	<url-pattern>/stockprice</url-pattern>
+  	<url-pattern>/stockDetails</url-pattern>
   </servlet-mapping>
 </web-app>

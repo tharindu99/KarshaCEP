@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 31, 2016 9:31:24 AM by Hibernate Tools 4.0.0 -->
+<!-- Generated May 31, 2016 3:23:31 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
     <class name="Stock" table="stock" catalog="karshacep">
         <composite-id name="id" class="StockId">

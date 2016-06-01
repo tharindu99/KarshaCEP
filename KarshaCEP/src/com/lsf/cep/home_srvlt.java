@@ -51,8 +51,8 @@ public class home_srvlt extends HttpServlet {
 		if (userPath.equals("/stockprice")) {
 			int PERMNO = Integer.parseInt(request.getParameter("PERMNO"));
 			pwr.print(grp.draw_stockprice(PERMNO));
-		} else if (userPath.equals("/rangeData")) {
-			
+		} else if (userPath.equals("/stockDetails")) {
+			pwr.print(grp.stock_details());
 
 		}
 	}
