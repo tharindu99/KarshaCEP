@@ -6,7 +6,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -16,6 +15,11 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/navbar.css" rel="stylesheet">
 <link href="css/c3.css" rel="stylesheet">
+<style type="text/css">
+      .c3-circles-Turnover {
+        display: none;
+      }
+</style>
 </head>
 
 <% graph_predata grp = new graph_predata();
@@ -60,7 +64,9 @@
 			<%}; %>
 			</ul>
 			<div class="tab-content">
-			<%for(int i=0;i<stk_data.size();i++){ %>
+			<%for(int i=0;i<stk_data.size();i++){
+				String tab_id = stk_data.get(i).getPermno()+"-"+stk_data.get(i).getComnam();
+			%>
 				<div id="<%=stk_data.get(i).getTsymbol()%><%=stk_data.get(i).getPermno()%>" class="tab-pane fade">
 					<div style="border-style: groove;">
 						<h4><center>PERMNO : <%=stk_data.get(i).getPermno()%> - <%=stk_data.get(i).getComnam()%> : <%=stk_data.get(i).getTsymbol()%></center></h4>
@@ -96,6 +102,9 @@
 							$( "#m1" ).last().addClass( "active" );
 							$( "#<%=stk_data.get(0).getTsymbol()%><%=stk_data.get(0).getPermno()%>" ).last().addClass( "tab-pane fade in active" );
 							StockPRC_graph(<%=stk_data.get(0).getPermno()%>, '#<%=stk_data.get(0).getTsymbol()%>');
+						});
+						$.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
+						    options.async = true;
 						});
 					</script>
 </body>
