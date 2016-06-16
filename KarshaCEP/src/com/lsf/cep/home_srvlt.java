@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lsf.logic.logics;
 import com.lsf.siddhi.siddhi_core;
 
 
@@ -52,6 +53,7 @@ public class home_srvlt extends HttpServlet {
 		String userPath = request.getServletPath();
 		PrintWriter pwr = response.getWriter();
 		graph_predata grp = new graph_predata();
+		logics logic = new logics();
 		if (userPath.equals("/stockprice")) {
 			int PERMNO = Integer.parseInt(request.getParameter("PERMNO"));
 			pwr.print(grp.draw_stockprice(PERMNO));
@@ -60,7 +62,7 @@ public class home_srvlt extends HttpServlet {
 		} else if (userPath.equals("/stockDetails")) {
 			pwr.print(grp.stock_details());
 		}else if (userPath.equals("/stockMaxima")) {
-			grp.Maxima_calculate(36469);
+			logic.maxima_calculate(70519);
 		}
 	}
 

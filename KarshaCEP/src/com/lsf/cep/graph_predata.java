@@ -69,7 +69,7 @@ public class graph_predata extends DBopenConnection {
 		return stk_details;
 	}
 
-	public void Maxima_calculate(int PERMNO) {
+	public ArrayList<Stock_MinimaMaxima> Maxima_dataCollect(int PERMNO) {
 		DBopen_me();
 		String Sql_maxima = "SELECT date,PRC,RET,SHROUT,VOL,PseudoPRC,PseudoPRCn,RawVol,Turnover FROM stock WHERE PERMNO="+PERMNO;
 		String Sql_count_maxima = "SELECT count(date) FROM stock WHERE PERMNO = "+PERMNO;	
@@ -82,19 +82,26 @@ public class graph_predata extends DBopenConnection {
 		while ( stk_itr.hasNext() ) {
 		    Object[] tuple = (Object[]) stk_itr.next();
 		    Stock_MinimaMaxima stk_data = new Stock_MinimaMaxima();
-		    stk_data.setDate((String) tuple[0]);
-		    stk_data.setPRC((Double) tuple[1]);
-		    stk_data.setRET((Double) tuple[2]);
-		    stk_data.setSHROUT((int) tuple[3]);
-		    stk_data.setVOL((int) tuple[4]);
-		    stk_data.setPseudoPRC((double) tuple[5]);
-		    stk_data.setPseudoPRCn((double) tuple[6]);
-		    stk_data.setRawVol((int) tuple[7]);
-		    stk_data.setTurnover((double) tuple[8]);
+		    
+		    stk_data.setDate((String) nullRemover(tuple[0]));
+		    stk_data.setPRC((Double) nullRemover(tuple[1]));
+		    stk_data.setRET((Double) nullRemover(tuple[2]));
+		    stk_data.setSHROUT((int) nullRemover(tuple[3]));
+		    stk_data.setVOL((int) nullRemover(tuple[4]));
+		    stk_data.setPseudoPRC((double) nullRemover(tuple[5]));
+		    stk_data.setPseudoPRCn((double) nullRemover(tuple[6]));
+		    stk_data.setRawVol((int) nullRemover(tuple[7]));
+		    stk_data.setTurnover((double) nullRemover(tuple[8]));
 		    stk_maxima.add(stk_data);
 		}
-		
-		System.out.println("kkkkkkk : "+stk_maxima.get(10).getTurnover());
 		DBclose_me();
+		return stk_maxima;
+	}
+	
+	public Object nullRemover(Object a) {
+		if(a==null )return 0;
+		else return a;
+		
+		 
 	}
 }
