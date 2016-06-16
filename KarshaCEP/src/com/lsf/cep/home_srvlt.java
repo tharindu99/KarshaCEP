@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lsf.siddhi.siddhi_core;
+
+
 /**
  * Servlet implementation class home_srvlt
  */
@@ -38,6 +41,7 @@ public class home_srvlt extends HttpServlet {
 		DBopenConnection DB_con = new DBopenConnection();
 		DB_con.DBopen_me();
 		System.out.println("we ready...............");
+		
 	}
 
 	/**
@@ -51,9 +55,12 @@ public class home_srvlt extends HttpServlet {
 		if (userPath.equals("/stockprice")) {
 			int PERMNO = Integer.parseInt(request.getParameter("PERMNO"));
 			pwr.print(grp.draw_stockprice(PERMNO));
+			/*siddhi_core sid = new siddhi_core();
+			sid.siddhi_test();*/
 		} else if (userPath.equals("/stockDetails")) {
 			pwr.print(grp.stock_details());
-
+		}else if (userPath.equals("/stockMaxima")) {
+			grp.Maxima_calculate(36469);
 		}
 	}
 

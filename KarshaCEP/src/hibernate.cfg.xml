@@ -12,5 +12,6 @@
   <mapping class="com.lsf.entity.Stock"/>
   <mapping class="com.lsf.entity.stockPrice_grp"/>
   <mapping class="com.lsf.entity.StockDetails"/>
+  <mapping class="com.lsf.entity.Stock_MinimaMaxima"/>
  </session-factory>
 </hibernate-configuration>

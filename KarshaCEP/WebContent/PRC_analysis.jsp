@@ -6,6 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -15,11 +16,19 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/navbar.css" rel="stylesheet">
 <link href="css/c3.css" rel="stylesheet">
+<link rel="stylesheet" type="css/easyui.css">
+<script src="js/jquery.min.js"></script>
+
+
 <style type="text/css">
-      .c3-circles-Turnover {
-        display: none;
-      }
+  .c3-circles-Turnover {
+     display: none;
+  }
+  #eq > span {
+    height:120px; float:left; margin:15px
+  }
 </style>
+
 </head>
 
 <% graph_predata grp = new graph_predata();
@@ -74,18 +83,30 @@
 					</div>
 				</div>
 			<%}; %>
-			
-			
 			</div>
-					<script src="js/jquery.min.js"></script>
-					<script>
-						window.jQuery
-								|| document
-										.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
-					</script>
+			<div class="col-xs-12" style="height:10px;"></div>
+				<div class="col-lg-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            Maxima Calculation 
+                        </div>
+                        <div class="panel-body">
+                    	
+                        </div>
+                        <div class="panel-footer">
+                            <button type="button" class="btn btn-outline btn-primary btn-xs">Calculate</button>
+                        </div>
+                    </div>
+                </div>
+               			
+			
+					
+					
 					<script src="js/bootstrap.min.js"></script>
 					<script src="js/d3.min.js"></script>
    					<script src="js/c3.js"></script>
+					
+   					
 					<script type="text/javascript" src="js/graph/stockPrice_grp.js"></script>
 					<script type="text/javascript">
 						<%for(int i=1;i<stk_data.size();i++){%>
@@ -99,6 +120,7 @@
 							$(".nav-tabs a").click(function() {
 								$(this).tab('show');
 							});
+							
 							$( "#m1" ).last().addClass( "active" );
 							$( "#<%=stk_data.get(0).getTsymbol()%><%=stk_data.get(0).getPermno()%>" ).last().addClass( "tab-pane fade in active" );
 							StockPRC_graph(<%=stk_data.get(0).getPermno()%>, '#<%=stk_data.get(0).getTsymbol()%>');
@@ -106,6 +128,9 @@
 						$.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
 						    options.async = true;
 						});
+					
+						    
+						 
 					</script>
 </body>
 </html>
