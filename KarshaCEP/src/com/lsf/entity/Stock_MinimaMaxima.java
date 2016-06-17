@@ -25,6 +25,9 @@ public class Stock_MinimaMaxima {
 	public Double getRET() {
 		return RET;
 	}
+	public boolean getSplit(){
+		return Split;
+	}
 	public void setRET(Double rET) {
 		RET = rET;
 	}
