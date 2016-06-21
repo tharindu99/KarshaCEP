@@ -71,7 +71,7 @@ public class graph_predata extends DBopenConnection {
 
 	public ArrayList<Stock_MinimaMaxima> Maxima_dataCollect(int PERMNO) {
 		DBopen_me();
-		String Sql_maxima = "SELECT date,PRC,RET,SHROUT,VOL,PseudoPRC,PseudoPRCn,RawVol,Turnover FROM stock WHERE PERMNO="+PERMNO+" and date between '2004-01-01' and '2014-12-31';" ;
+		String Sql_maxima = "SELECT date,PRC,RET,SHROUT,VOL,PseudoPRC,PseudoPRCn,RawVol,Turnover FROM stock WHERE PERMNO="+PERMNO+";" ;
 		String Sql_count_maxima = "SELECT count(date) FROM stock WHERE PERMNO = "+PERMNO;	
 		
 		List<BigInteger> maxima_cnt = session.createSQLQuery(Sql_count_maxima).list();

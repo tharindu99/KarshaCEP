@@ -26,9 +26,9 @@ public class logics {
 		ArrayList<Stock_MinimaMaxima> stk_PreMin = PreMin_update(stk_pseudoprc_hack, l);
 		ArrayList<Stock_MinimaMaxima> stk_PostMin = PostMin_update(stk_PreMin, L);
 		ArrayList<Stock_MinimaMaxima> stk_WindowMax = WindowMax_update(stk_PostMin,l,L);
-		
-		for (Stock_MinimaMaxima stock_MinimaMaxima : stk_WindowMax) {
-			System.out.println(stock_MinimaMaxima.getWindowMax()+" : "+stock_MinimaMaxima.getDate()+" : "+stock_MinimaMaxima.getPreMinRow()+" : "+stock_MinimaMaxima.getPostMinRow());
+		ArrayList<Stock_MinimaMaxima> stk_completed = is_function_update(stk_WindowMax, d, D);
+		for (Stock_MinimaMaxima stock_MinimaMaxima : stk_completed) {
+			System.out.println(stock_MinimaMaxima.isIsmax()+" : "+stock_MinimaMaxima.getDate()+" : "+stock_MinimaMaxima.isIsBust());
 		}
 	}
 	public ArrayList<Stock_MinimaMaxima> split_update(ArrayList<Stock_MinimaMaxima> stk_arr) {
@@ -122,7 +122,6 @@ public class logics {
 			}else {
 				stk_arr.get(i).setWindowMax(MaxCalculate(i-l,i+L, stk_arr));
 			}
-			
 		}
 		return stk_arr;
 	}
@@ -137,4 +136,37 @@ public class logics {
 		return maxValue;	
 	}
 
+	public ArrayList<Stock_MinimaMaxima> is_function_update(ArrayList<Stock_MinimaMaxima>stk_arr,double d,double D) {
+		for (int i = 0; i < stk_arr.size(); i++) {
+			//is max//
+			if (stk_arr.get(i).getPseudoPRC()==stk_arr.get(i).getWindowMax()) {
+				stk_arr.get(i).setIsmax(true);
+			}else {
+				stk_arr.get(i).setIsmax(false);
+			}
+			//is boom //
+			double boom =(stk_arr.get(i).getPseudoPRC()-stk_arr.get(i).getPreMin())/stk_arr.get(i).getPreMin();
+			if (boom>d) {
+				stk_arr.get(i).setIsBoom(true);
+			}else{
+				stk_arr.get(i).setIsBoom(false);
+			}
+			//is bust //
+			double bust = (stk_arr.get(i).getPseudoPRC()-stk_arr.get(i).getPostMin())/stk_arr.get(i).getPseudoPRC();
+			if (bust>D) {
+				stk_arr.get(i).setIsBust(true);
+			}else{
+				stk_arr.get(i).setIsBust(false);
+			}
+			//is local top 
+			Stock_MinimaMaxima stk = stk_arr.get(i);
+			int isboom = stk.isIsBoom() ? 1:0;
+			int isbust = stk.isIsBust() ? 1:0;
+			int ismax = stk.isIsmax() ? 1:0;
+			boolean isLT = isboom*isbust*ismax == 1 ? true:false;
+			stk_arr.get(i).setIsLocalTop(isLT);
+		}
+		
+		return stk_arr;
+	}
 }
