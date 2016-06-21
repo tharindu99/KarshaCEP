@@ -6,8 +6,8 @@ import javax.persistence.Id;
 @Entity
 public class Stock_MinimaMaxima {
 	String Date;
-	Double PRC,RET,PseudoPRC,PseudoPRCn,Turnover,PseudoPRC_hack,PreMin,PriMinRow,PostMin,PostMinRow,WindowMax;
-	int SHROUT,VOL,RawVol;
+	Double PRC,RET,PseudoPRC,PseudoPRCn,Turnover,PseudoPRC_hack,PreMin,PostMin,WindowMax;
+	int SHROUT,VOL,RawVol,PreMinRow,PostMinRow;
 	boolean Split,Ismax,IsBoom,IsBust,IsLocalTop;
 	@Id
 	public String getDate() {
@@ -61,11 +61,11 @@ public class Stock_MinimaMaxima {
 	public void setPreMin(Double preMin) {
 		PreMin = preMin;
 	}
-	public Double getPriMinRow() {
-		return PriMinRow;
+	public int getPreMinRow() {
+		return PreMinRow;
 	}
-	public void setPriMinRow(Double priMinRow) {
-		PriMinRow = priMinRow;
+	public void setPreMinRow(int preMinRow) {
+		PreMinRow = preMinRow;
 	}
 	public Double getPostMin() {
 		return PostMin;
@@ -73,10 +73,10 @@ public class Stock_MinimaMaxima {
 	public void setPostMin(Double postMin) {
 		PostMin = postMin;
 	}
-	public Double getPostMinRow() {
+	public int getPostMinRow() {
 		return PostMinRow;
 	}
-	public void setPostMinRow(Double postMinRow) {
+	public void setPostMinRow(int postMinRow) {
 		PostMinRow = postMinRow;
 	}
 	public Double getWindowMax() {
