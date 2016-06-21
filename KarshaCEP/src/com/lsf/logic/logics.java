@@ -25,9 +25,10 @@ public class logics {
 		ArrayList<Stock_MinimaMaxima> stk_pseudoprc_hack = PseudoPRC_hack_update(stk_rawvol);
 		ArrayList<Stock_MinimaMaxima> stk_PreMin = PreMin_update(stk_pseudoprc_hack, l);
 		ArrayList<Stock_MinimaMaxima> stk_PostMin = PostMin_update(stk_PreMin, L);
+		ArrayList<Stock_MinimaMaxima> stk_WindowMax = WindowMax_update(stk_PostMin,l,L);
 		
-		for (Stock_MinimaMaxima stock_MinimaMaxima : stk_PreMin) {
-			System.out.println(stock_MinimaMaxima.getPostMin()+" : "+stock_MinimaMaxima.getDate()+" : "+stock_MinimaMaxima.getPostMinRow());
+		for (Stock_MinimaMaxima stock_MinimaMaxima : stk_WindowMax) {
+			System.out.println(stock_MinimaMaxima.getWindowMax()+" : "+stock_MinimaMaxima.getDate()+" : "+stock_MinimaMaxima.getPreMinRow()+" : "+stock_MinimaMaxima.getPostMinRow());
 		}
 	}
 	public ArrayList<Stock_MinimaMaxima> split_update(ArrayList<Stock_MinimaMaxima> stk_arr) {
@@ -92,7 +93,7 @@ public class logics {
 			if(i>=stk_arr.size()-L){
 				postMin = calculate_min(i,stk_arr.size()-1,stk_arr);
 			}else{
-				postMin = calculate_min(i,i+L,stk_arr);
+				postMin = calculate_min(i+1,i+L,stk_arr);
 			}
 			postminrow = postMin[0];
 			stk_arr.get(i).setPostMin(postMin[1]);
@@ -112,6 +113,28 @@ public class logics {
 		return minValue;
 	}
 	
+	public ArrayList<Stock_MinimaMaxima> WindowMax_update(ArrayList<Stock_MinimaMaxima> stk_arr,int l,int L) {
+		for (int i = 0; i < stk_arr.size(); i++) {
+			if(i<=l){
+				stk_arr.get(i).setWindowMax(MaxCalculate(0,i+L, stk_arr));
+			}else if(i+L>=stk_arr.size()){
+				stk_arr.get(i).setWindowMax(MaxCalculate(i-l,stk_arr.size()-1, stk_arr));
+			}else {
+				stk_arr.get(i).setWindowMax(MaxCalculate(i-l,i+L, stk_arr));
+			}
+			
+		}
+		return stk_arr;
+	}
 	
+	public double MaxCalculate(int low,int high, ArrayList<Stock_MinimaMaxima>stk_arr) {
+		double maxValue = 0;
+		for (int j = low; j <= high; j++) {
+			if(maxValue<stk_arr.get(j).getPseudoPRC()){
+				maxValue = stk_arr.get(j).getPseudoPRC();
+			}
+		}
+		return maxValue;	
+	}
 
 }
