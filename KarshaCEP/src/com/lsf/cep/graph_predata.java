@@ -77,8 +77,7 @@ public class graph_predata extends DBopenConnection {
 		List<BigInteger> maxima_cnt = session.createSQLQuery(Sql_count_maxima).list();
 		Iterator stk_itr = session.createSQLQuery(Sql_maxima).list().iterator();	
 		
-		ArrayList<Stock_MinimaMaxima> stk_maxima = new ArrayList<Stock_MinimaMaxima>();
-			
+		ArrayList<Stock_MinimaMaxima> stk_maxima = new ArrayList<Stock_MinimaMaxima>();	
 		while ( stk_itr.hasNext() ) {
 		    Object[] tuple = (Object[]) stk_itr.next();
 		    Stock_MinimaMaxima stk_data = new Stock_MinimaMaxima();
