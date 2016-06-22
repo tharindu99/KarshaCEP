@@ -28,7 +28,9 @@ public class logics {
 		ArrayList<Stock_MinimaMaxima> stk_WindowMax = WindowMax_update(stk_PostMin,l,L);
 		ArrayList<Stock_MinimaMaxima> stk_completed = is_function_update(stk_WindowMax, d, D);
 		for (Stock_MinimaMaxima stock_MinimaMaxima : stk_completed) {
-			System.out.println(stock_MinimaMaxima.isIsmax()+" : "+stock_MinimaMaxima.getDate()+" : "+stock_MinimaMaxima.isIsBust());
+			System.out.println(stock_MinimaMaxima.getDate()+" : "+stock_MinimaMaxima.isIsLocalTop());
+			//System.out.println(stock_MinimaMaxima.getPseudoPRC()+" : "+stock_MinimaMaxima.getWindowMax()+" : "+stock_MinimaMaxima.getDate());
+			//System.out.println(stock_MinimaMaxima.isIsmax()+" : "+stock_MinimaMaxima.getDate()+" : "+stock_MinimaMaxima.isIsBust());
 		}
 	}
 	public ArrayList<Stock_MinimaMaxima> split_update(ArrayList<Stock_MinimaMaxima> stk_arr) {
@@ -139,7 +141,7 @@ public class logics {
 	public ArrayList<Stock_MinimaMaxima> is_function_update(ArrayList<Stock_MinimaMaxima>stk_arr,double d,double D) {
 		for (int i = 0; i < stk_arr.size(); i++) {
 			//is max//
-			if (stk_arr.get(i).getPseudoPRC()==stk_arr.get(i).getWindowMax()) {
+			if ( Double.compare(stk_arr.get(i).getPseudoPRC(), stk_arr.get(i).getWindowMax())==0) {
 				stk_arr.get(i).setIsmax(true);
 			}else {
 				stk_arr.get(i).setIsmax(false);
