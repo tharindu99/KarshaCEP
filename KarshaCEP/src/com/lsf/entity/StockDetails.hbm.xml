@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 31, 2016 3:52:42 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.lsf.entity.StockDetails" table="STOCKDETAILS">
+        <id name="permno" type="int">
+            <column name="PERMNO" />
+            <generator class="assigned" />
+        </id>
+        <property name="comnam" type="java.lang.String">
+            <column name="COMNAM" />
+        </property>
+        <property name="tsymbol" type="java.lang.String">
+            <column name="TSYMBOL" />
+        </property>
+        <property name="naics" type="int">
+            <column name="NAICS" />
+        </property>
+        <property name="naicsCode" type="int">
+            <column name="NAICSCODE" />
+        </property>
+        <property name="naicsName" type="java.lang.String">
+            <column name="NAICSNAME" />
+        </property>
+    </class>
+</hibernate-mapping>
