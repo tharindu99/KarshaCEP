@@ -62,7 +62,7 @@ public class home_srvlt extends HttpServlet {
 		} else if (userPath.equals("/stockDetails")) {
 			pwr.print(grp.stock_details());
 		}else if (userPath.equals("/stockMaxima")) {
-			logic.maxima_calculate(59408);
+			pwr.print(logic.maxima_calculate(59408));
 		}
 	}
 

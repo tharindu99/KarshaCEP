@@ -9,7 +9,7 @@ import com.lsf.entity.Stock_MinimaMaxima;
 
 public class logics {
 
-	public void  maxima_calculate(int permno) {
+	public String  maxima_calculate(int permno) {
 		
 		//window details//
 		double d = 0.04;
@@ -34,7 +34,8 @@ public class logics {
 			//System.out.println(stock_MinimaMaxima.isIsmax()+" : "+stock_MinimaMaxima.getDate()+" : "+stock_MinimaMaxima.isIsBust());
 		}*/
 		String [][] LT = getLocalTops(stk_completed);
-		grp.Maxima_collectData(LT,permno);
+		String maximas = grp.Maxima_collectData(LT,permno);
+		return maximas;
 	}
 		
 	public ArrayList<Stock_MinimaMaxima> split_update(ArrayList<Stock_MinimaMaxima> stk_arr) {
