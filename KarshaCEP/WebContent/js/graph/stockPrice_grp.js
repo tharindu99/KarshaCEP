@@ -64,3 +64,20 @@ function draw_pricegrap (id,data) {
     });
    
 }
+
+function maximas_getData(permno) {
+	console.log(permno);
+	var url = "stockMaxima?PERMNO="+permno;
+	$.ajax({
+		type : 'GET',
+		url : url,
+		dataType : 'json',
+		success : function(data) {
+			console.log(data.length);
+			},
+			error : function(data, error) {
+				console.log(error+" data doesnt loading correctly");
+			},
+			async : false
+	});
+}

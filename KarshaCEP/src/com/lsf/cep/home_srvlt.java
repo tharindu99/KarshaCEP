@@ -62,7 +62,8 @@ public class home_srvlt extends HttpServlet {
 		} else if (userPath.equals("/stockDetails")) {
 			pwr.print(grp.stock_details());
 		}else if (userPath.equals("/stockMaxima")) {
-			pwr.print(logic.maxima_calculate(59408));
+			int PERMNO = Integer.parseInt(request.getParameter("PERMNO"));
+			pwr.print(logic.maxima_calculate(PERMNO));
 		}
 	}
 

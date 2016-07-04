@@ -28,7 +28,9 @@
     height:120px; float:left; margin:15px
   }
 </style>
-
+<script type="text/javascript">
+	var permno_page = 36469;
+</script>
 </head>
 
 <% graph_predata grp = new graph_predata();
@@ -94,7 +96,7 @@
                     	
                         </div>
                         <div class="panel-footer">
-                            <button type="button" class="btn btn-outline btn-primary btn-xs">Calculate</button>
+                            <button id ="maximaCalculate" type="button" class="btn btn-outline btn-primary btn-xs">Calculate</button>
                         </div>
                     </div>
                 </div>
@@ -106,11 +108,17 @@
 					<script src="js/d3.min.js"></script>
    					<script src="js/c3.js"></script>
 					
+   					<script type="text/javascript">
+	   					$( "#maximaCalculate" ).click(function() {
+	   						maximas_getData(permno_page);
+	   					});
+   					</script>
    					
 					<script type="text/javascript" src="js/graph/stockPrice_grp.js"></script>
 					<script type="text/javascript">
 						<%for(int i=1;i<stk_data.size();i++){%>
 							$("#m<%=(i+1)%>").click(function(){
+								permno_page = <%=stk_data.get(i).getPermno()%>;
 								StockPRC_graph(<%=stk_data.get(i).getPermno()%>, '#<%=stk_data.get(i).getTsymbol()%>');
 							});
 					 	<%};%>

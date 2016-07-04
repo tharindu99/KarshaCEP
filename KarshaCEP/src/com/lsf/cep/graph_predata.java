@@ -109,6 +109,7 @@ public class graph_predata extends DBopenConnection {
 		String output = "[";
 		DBopen_me();
 		Gson gson = new Gson();
+		ArrayList<JsonObject> arrlist_out = new ArrayList<JsonObject>();
 		
 		for (int i = 0; i < maximaDates.length; i++) {
 			String Sql = "SELECT date as AllDates, PRC,PseudoPRC,Turnover FROM stock WHERE PERMNO="+permno+" and date BETWEEN '"+maximaDates[i][0]+"' and '"+maximaDates[i][1]+"'";
@@ -139,12 +140,12 @@ public class graph_predata extends DBopenConnection {
 			j_obj.add("PseudoPRC",PseudoPRC_J);
 			j_obj.add("Turnover",Turnover_J);
 			
+			arrlist_out.add(j_obj);
 			
-			output = output+j_obj+" ,";
 		}	
 		output = output+"]";
-		System.out.println(output);
+		//System.out.println(output);
 		DBclose_me();
-		return output;
+		return arrlist_out.toString();
 	}
 }
