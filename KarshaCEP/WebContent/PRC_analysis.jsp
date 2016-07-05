@@ -21,12 +21,15 @@
 
 
 <style type="text/css">
-  .c3-circles-Turnover {
-     display: none;
-  }
-  #eq > span {
-    height:120px; float:left; margin:15px
-  }
+.c3-circles-Turnover {
+	display: none;
+}
+
+#eq>span {
+	height: 120px;
+	float: left;
+	margin: 15px
+}
 </style>
 <script type="text/javascript">
 	var permno_page = 36469;
@@ -67,55 +70,77 @@
 				major 10 equities [Market Capitalization].
 			</p>
 			<ul class="nav nav-tabs">
-			<% for(int i=0;i<stk_data.size();i++){ 
+				<% for(int i=0;i<stk_data.size();i++){ 
 				String id = "\"m"+(i+1)+"\"";
 				String permno  = "\"#"+stk_data.get(i).getTsymbol()+stk_data.get(i).getPermno()+"\"";
-			%>			
+			%>
 				<li id=<%=id %>><a href=<%=permno %>><b><%=stk_data.get(i).getTsymbol()%></b>:<%=stk_data.get(i).getPermno()%></a></li>
-			<%}; %>
+				<%}; %>
 			</ul>
 			<div class="tab-content">
-			<%for(int i=0;i<stk_data.size();i++){
+				<%for(int i=0;i<stk_data.size();i++){
 				String tab_id = stk_data.get(i).getPermno()+"-"+stk_data.get(i).getComnam();
 			%>
-				<div id="<%=stk_data.get(i).getTsymbol()%><%=stk_data.get(i).getPermno()%>" class="tab-pane fade">
+				<div
+					id="<%=stk_data.get(i).getTsymbol()%><%=stk_data.get(i).getPermno()%>"
+					class="tab-pane fade">
 					<div style="border-style: groove;">
-						<h4><center>PERMNO : <%=stk_data.get(i).getPermno()%> - <%=stk_data.get(i).getComnam()%> : <%=stk_data.get(i).getTsymbol()%></center></h4>
+						<h4>
+							<center>
+								PERMNO :
+								<%=stk_data.get(i).getPermno()%>
+								-
+								<%=stk_data.get(i).getComnam()%>
+								:
+								<%=stk_data.get(i).getTsymbol()%></center>
+						</h4>
 						<div id="<%=stk_data.get(i).getTsymbol() %>"></div>
 					</div>
 				</div>
-			<%}; %>
+				<%}; %>
 			</div>
-			<div class="col-xs-12" style="height:10px;"></div>
-				<div class="col-lg-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            Maxima Calculation 
-                        </div>
-                        <div class="panel-body">
-                    	
-                        </div>
-                        <div class="panel-footer">
-                            <button id ="maximaCalculate" type="button" class="btn btn-outline btn-primary btn-xs">Calculate</button>
-                        </div>
-                    </div>
-                </div>
-               			
-			
-					
-					
-					<script src="js/bootstrap.min.js"></script>
-					<script src="js/d3.min.js"></script>
-   					<script src="js/c3.js"></script>
-					
-   					<script type="text/javascript">
+			<div class="col-xs-12" style="height: 10px;"></div>
+			<div class="col-lg-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Maxima Calculation</div>
+					<div class="panel-body"></div>
+					<div class="panel-footer">
+						<button id="maximaCalculate" type="button"
+							class="btn btn-outline btn-primary btn-xs">Calculate</button>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<h4><center>Maxima : 1</center></h4>
+					<div id="BAC_max_1"></div>
+				</div>
+				<div class="col-sm-4">
+					<h4><center>Maxima : 2</center></h4>
+					<div id="BAC_max_2"></div>
+				</div>
+				<div class="col-sm-4">
+					<h4><center>Maxima : 3</center></h4>
+					<div id="BAC_max_3"></div>
+				</div>
+			</div>
+
+
+
+
+
+			<script src="js/bootstrap.min.js"></script>
+			<script src="js/d3.min.js"></script>
+			<script src="js/c3.js"></script>
+
+			<script type="text/javascript">
 	   					$( "#maximaCalculate" ).click(function() {
 	   						maximas_getData(permno_page);
 	   					});
    					</script>
-   					
-					<script type="text/javascript" src="js/graph/stockPrice_grp.js"></script>
-					<script type="text/javascript">
+
+			<script type="text/javascript" src="js/graph/stockPrice_grp.js"></script>
+			<script type="text/javascript">
 						<%for(int i=1;i<stk_data.size();i++){%>
 							$("#m<%=(i+1)%>").click(function(){
 								permno_page = <%=stk_data.get(i).getPermno()%>;
@@ -123,7 +148,7 @@
 							});
 					 	<%};%>
 					</script>
-					<script>
+			<script>
 						$(document).ready(function() {
 							$(".nav-tabs a").click(function() {
 								$(this).tab('show');
