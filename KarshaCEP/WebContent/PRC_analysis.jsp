@@ -110,19 +110,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-sm-4">
-					<h4><center>Maxima : 1</center></h4>
-					<div id="BAC_max_1"></div>
-				</div>
-				<div class="col-sm-4">
-					<h4><center>Maxima : 2</center></h4>
-					<div id="BAC_max_2"></div>
-				</div>
-				<div class="col-sm-4">
-					<h4><center>Maxima : 3</center></h4>
-					<div id="BAC_max_3"></div>
-				</div>
+			<div id="maxima_container" class="row">
+				<div class="col-lg-12">
+                	<h1 class="page-header">Maxima Result</h1>
+            	</div>           
 			</div>
 
 
@@ -145,6 +136,11 @@
 							$("#m<%=(i+1)%>").click(function(){
 								permno_page = <%=stk_data.get(i).getPermno()%>;
 								StockPRC_graph(<%=stk_data.get(i).getPermno()%>, '#<%=stk_data.get(i).getTsymbol()%>');
+								
+								var myNode = document.getElementById("maxima_container");
+								while (myNode.firstChild) {
+								    myNode.removeChild(myNode.firstChild);
+								}
 							});
 					 	<%};%>
 					</script>

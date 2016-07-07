@@ -64,7 +64,7 @@ function draw_pricegrap (id,data) {
     });
    
 }
-
+var count_maximas = 0;
 function maximas_getData(permno) {
 	console.log(permno);
 	var url = "stockMaxima?PERMNO="+permno;
@@ -74,7 +74,10 @@ function maximas_getData(permno) {
 		dataType : 'json',
 		success : function(data) {
 			console.log(data.length);
-			draw_maxima(data[0]);
+				for (var i = 0; i < data.length; i++) {
+					create_elmnt("maxima_",i);
+					draw_maxima(data[i],"maxima_"+i);
+				}
 			},
 			error : function(data, error) {
 				console.log(error+" data doesnt loading correctly");
@@ -83,12 +86,13 @@ function maximas_getData(permno) {
 	});
 }
 
-function draw_maxima(data) {
-console.log(data);
+function draw_maxima(data,id) {
+	
     var chart1 = c3.generate({
-        bindto: "#BAC_max_1",
+        bindto: "#"+id,
         size: {
-            width: 300
+            width: 250,
+            height:189
         },
         data: {
         	 x: 'AllDates',
@@ -104,7 +108,7 @@ console.log(data);
             x: {
                 type: 'timeseries',
                 tick: {
-                    count: 5,
+                    count: 3,
                     format: '%Y-%m-%d'
                 },
                 label:'Time',
@@ -128,4 +132,13 @@ console.log(data);
         enabled: true
     }
     });
+}
+
+function create_elmnt(tag,cnt) {
+	var maxima_cantainer = document.getElementById("maxima_container");
+	var nw_elmnt = document.createElement('div');
+	var tag_id = tag+cnt;
+	    nw_elmnt.setAttribute("id",tag_id);
+	    nw_elmnt.setAttribute("class", "col-lg-3 col-md-4 col-xs-6 thumb");
+	    maxima_cantainer.appendChild(nw_elmnt);
 }
