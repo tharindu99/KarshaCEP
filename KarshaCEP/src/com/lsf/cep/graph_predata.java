@@ -8,6 +8,7 @@ import java.util.List;
 import org.json.JSONArray;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.lsf.entity.Stock;
@@ -102,5 +103,49 @@ public class graph_predata extends DBopenConnection {
 		else return a;
 		
 		 
+	}
+
+	public String Maxima_collectData(String[][] maximaDates, int permno) {
+		String output = "[";
+		DBopen_me();
+		Gson gson = new Gson();
+		ArrayList<JsonObject> arrlist_out = new ArrayList<JsonObject>();
+		
+		for (int i = 0; i < maximaDates.length; i++) {
+			String Sql = "SELECT date as AllDates, PRC,PseudoPRC,Turnover FROM stock WHERE PERMNO="+permno+" and date BETWEEN '"+maximaDates[i][0]+"' and '"+maximaDates[i][1]+"'";
+			List<stockPrice_grp> stk = session.createSQLQuery(Sql)
+					 						  .addEntity(stockPrice_grp.class)
+					 						  .list();
+			List<String> AllDates = new ArrayList<String>();
+			List<Double> PRC = new ArrayList<Double>();
+			List<Double> PseudoPRC = new ArrayList<Double>();
+			List<Double> Turnover  = new ArrayList<Double>();
+			
+			for (stockPrice_grp stockPrice_grp : stk) {
+				AllDates.add(stockPrice_grp.getAllDates());
+				PRC.add(stockPrice_grp.getPRC());
+				PseudoPRC.add(stockPrice_grp.getPseudoPRC());
+				Turnover.add(stockPrice_grp.getTurnover());
+			}
+			
+			JsonObject j_obj = new JsonObject();
+						
+			JsonElement AllDates_J = gson.toJsonTree(AllDates);
+			JsonElement PRC_J = gson.toJsonTree(PRC);
+			JsonElement PseudoPRC_J = gson.toJsonTree(PseudoPRC);
+			JsonElement Turnover_J = gson.toJsonTree(Turnover);
+			
+			j_obj.add("AllDates",AllDates_J);
+			j_obj.add("PRC",PRC_J);
+			j_obj.add("PseudoPRC",PseudoPRC_J);
+			j_obj.add("Turnover",Turnover_J);
+			
+			arrlist_out.add(j_obj);
+			
+		}	
+		output = output+"]";
+		//System.out.println(output);
+		DBclose_me();
+		return arrlist_out.toString();
 	}
 }

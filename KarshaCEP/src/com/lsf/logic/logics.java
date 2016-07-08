@@ -9,7 +9,7 @@ import com.lsf.entity.Stock_MinimaMaxima;
 
 public class logics {
 
-	public void  maxima_calculate(int permno) {
+	public String  maxima_calculate(int permno) {
 		
 		//window details//
 		double d = 0.04;
@@ -27,12 +27,17 @@ public class logics {
 		ArrayList<Stock_MinimaMaxima> stk_PostMin = PostMin_update(stk_PreMin, L);
 		ArrayList<Stock_MinimaMaxima> stk_WindowMax = WindowMax_update(stk_PostMin,l,L);
 		ArrayList<Stock_MinimaMaxima> stk_completed = is_function_update(stk_WindowMax, d, D);
-		for (Stock_MinimaMaxima stock_MinimaMaxima : stk_completed) {
+		
+		/*for (Stock_MinimaMaxima stock_MinimaMaxima : stk_completed) {
 			System.out.println(stock_MinimaMaxima.getDate()+" : "+stock_MinimaMaxima.isIsLocalTop());
 			//System.out.println(stock_MinimaMaxima.getPseudoPRC()+" : "+stock_MinimaMaxima.getWindowMax()+" : "+stock_MinimaMaxima.getDate());
 			//System.out.println(stock_MinimaMaxima.isIsmax()+" : "+stock_MinimaMaxima.getDate()+" : "+stock_MinimaMaxima.isIsBust());
-		}
+		}*/
+		String [][] LT = getLocalTops(stk_completed);
+		String maximas = grp.Maxima_collectData(LT,permno);
+		return maximas;
 	}
+		
 	public ArrayList<Stock_MinimaMaxima> split_update(ArrayList<Stock_MinimaMaxima> stk_arr) {
 		for (int i = 0; i < stk_arr.size(); i++) {
 			if(i==0 || stk_arr.get(i).getSHROUT()==stk_arr.get(i-1).getSHROUT()){
@@ -171,4 +176,22 @@ public class logics {
 		
 		return stk_arr;
 	}
+
+	public String[][] getLocalTops(ArrayList<Stock_MinimaMaxima> stk_arr) {
+		int count_LT = 0;
+		for (int i = 0; i < stk_arr.size(); i++) {
+			if(stk_arr.get(i).isIsLocalTop())count_LT++;
+		}
+		String LocalTop[][]= new String[count_LT][2] ;
+		int count = 0;
+		for (int i = 0; i <stk_arr.size(); i++) {
+			if(stk_arr.get(i).isIsLocalTop()){
+				LocalTop[count][0] = stk_arr.get(stk_arr.get(i).getPreMinRow()).getDate();
+				LocalTop[count][1] = stk_arr.get(stk_arr.get(i).getPostMinRow()).getDate();
+				count++;
+			}
+		}
+		return LocalTop;
+	}
+
 }
