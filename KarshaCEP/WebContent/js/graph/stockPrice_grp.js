@@ -66,6 +66,16 @@ function draw_pricegrap (id,data) {
 }
 var count_maximas = 0;
 function maximas_getData(permno) {
+		
+	var maxima_cantainer = document.getElementById("maxima_container");
+	var nw_elmnt = document.createElement('div');
+	    nw_elmnt.setAttribute("class","col-lg-12");
+	var maxima_result = document.createElement('h3');
+	    maxima_result.setAttribute("class","col-lg-12");
+	var node_txt = document.createTextNode("Maxima Result");
+	    maxima_result.appendChild(node_txt);
+	    nw_elmnt.appendChild(maxima_result); 
+	    maxima_cantainer.appendChild(nw_elmnt);
 	console.log(permno);
 	var url = "stockMaxima?PERMNO="+permno;
 	$.ajax({

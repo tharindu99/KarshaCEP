@@ -110,15 +110,8 @@
 					</div>
 				</div>
 			</div>
-			<div id="maxima_container" class="row">
-				<div class="col-lg-12">
-                	<h1 class="page-header">Maxima Result</h1>
-            	</div>           
+			<div id="maxima_container" class="row">          
 			</div>
-
-
-
-
 
 			<script src="js/bootstrap.min.js"></script>
 			<script src="js/d3.min.js"></script>
