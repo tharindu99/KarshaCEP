@@ -27,8 +27,6 @@ function draw_pricegrap (id,data) {
             },
             json : data,
 			mimeType : 'json'
-            
-           
         },
         axis: {
             x: {
@@ -54,15 +52,10 @@ function draw_pricegrap (id,data) {
                 }
             }
         },
-//            value: d3.format(',') // apply this format to both y and y2
-    /*    subchart: {
-      show: true
-    },*/
     zoom: {
         enabled: true
     }
     });
-   
 }
 var count_maximas = 0;
 function maximas_getData(permno) {
@@ -97,6 +90,11 @@ function maximas_getData(permno) {
 }
 
 function draw_maxima(data,id,count) {
+	//console.log(data);
+	var dup_arr = data.PseudoPRC;
+	var max = Math.max.apply(null, dup_arr);
+	var max_key = dup_arr.indexOf(max);
+	//console.log(data.PseudoPRC[max_key]);
 	
     var chart1 = c3.generate({
         bindto: "#"+id,
@@ -113,6 +111,13 @@ function draw_maxima(data,id,count) {
         	 },
         	 json : data,
              mimeType : 'json'
+        },
+        grid: {
+            x: {
+                lines: [
+                    {value: data.AllDates[max_key] , text: 'MAXIMA',position: 'middle'},
+                ]
+               }
         },
         axis: {
             x: {
@@ -142,6 +147,7 @@ function draw_maxima(data,id,count) {
         enabled: true
     }
     });
+    
     d3.select('#'+id+' svg').append('text')
     .attr('x', 150)
     .attr('y', 10)
