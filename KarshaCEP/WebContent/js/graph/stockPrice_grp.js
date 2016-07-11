@@ -86,7 +86,7 @@ function maximas_getData(permno) {
 			console.log(data.length);
 				for (var i = 0; i < data.length; i++) {
 					create_elmnt("maxima_",i);
-					draw_maxima(data[i],"maxima_"+i);
+					draw_maxima(data[i],"maxima_"+i,i+1);
 				}
 			},
 			error : function(data, error) {
@@ -96,7 +96,7 @@ function maximas_getData(permno) {
 	});
 }
 
-function draw_maxima(data,id) {
+function draw_maxima(data,id,count) {
 	
     var chart1 = c3.generate({
         bindto: "#"+id,
@@ -142,6 +142,12 @@ function draw_maxima(data,id) {
         enabled: true
     }
     });
+    d3.select('#'+id+' svg').append('text')
+    .attr('x', 150)
+    .attr('y', 10)
+    .attr('text-anchor', 'middle')
+    .style('font-size', '1.4em')
+    .text('Maxima - '+count);
 }
 
 function create_elmnt(tag,cnt) {
