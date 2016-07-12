@@ -147,7 +147,6 @@ function draw_maxima(data,id,count) {
         enabled: true
     }
     });
-    
     d3.select('#'+id+' svg').append('text')
     .attr('x', 150)
     .attr('y', 10)
@@ -155,7 +154,6 @@ function draw_maxima(data,id,count) {
     .style('font-size', '1.4em')
     .text('Maxima - '+count);
 }
-
 function create_elmnt(tag,cnt) {
 	var maxima_cantainer = document.getElementById("maxima_container");
 	var nw_elmnt = document.createElement('div');

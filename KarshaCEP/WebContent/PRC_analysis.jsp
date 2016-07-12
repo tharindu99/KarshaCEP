@@ -103,15 +103,42 @@
 			<div class="col-lg-12">
 				<div class="panel panel-primary">
 					<div class="panel-heading">Maxima Calculation</div>
-					<div class="panel-body"></div>
+					<div class="panel-body">
+						<p>Please click the following "calculate" button to calculate
+							the Maximas for this selected equity.</p>
+						<p>
+							&nbsp;<a href="#MAXIMA_calc" data-toggle="modal">How Maxima
+								calculation works. </a>
+					</div>
 					<div class="panel-footer">
 						<button id="maximaCalculate" type="button"
 							class="btn btn-outline btn-primary btn-xs">Calculate</button>
 					</div>
 				</div>
 			</div>
-			<div id="maxima_container" class="row">          
+			<div class="modal fade" id="MAXIMA_calc" role="dialog">
+				<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">
+								<center>MAXIMA Calculation.</center>
+							</h4>
+						</div>
+						<div class="modal-body">
+							<img src="img/MAXIMAclaculation.jpg"
+								style="max-width: 100%; height: auto;">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
 			</div>
+
+			<div id="maxima_container" class="row"></div>
 
 			<script src="js/bootstrap.min.js"></script>
 			<script src="js/d3.min.js"></script>
