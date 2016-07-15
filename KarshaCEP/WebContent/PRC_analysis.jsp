@@ -104,33 +104,33 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading">Maxima Calculation</div>
 					<div class="panel-body">
-						<p>Please click the following "calculate" button to calculate
-							the Maximas for this selected equity.</p>
-						<p>
+						<div class="row">
+							<div class="col-lg-6">
+								<p>Please click the following "calculate" button to calculate
+							the Maximas for this selected equity.						
 							&nbsp;<a href="#MAXIMA_calc" data-toggle="modal">How Maxima
 								calculation works. </a></p>
-								
+							</div>
+							<div class="col-lg-6">
 								<form class="form-inline" role="form">
-							<h3>Enter the Values</h3>
+							<h5>Maxima Calculation Parameters</h5>
 							D:<input type="number" class="form-control" id="insertD"
-								placeholder="1-5" min="1" max="5"> d:<input
+								placeholder="1-10" min="1" max="10" value=5> d:<input
 								type="number" class="form-control" id="insertd"
-								placeholder="1-5" min="1" max="5">
-							<p></p>
+								placeholder="1-10" min="1" max="10" value=5>
+							
 							L: <input type="number" class="form-control" id="insertL"
-								placeholder="1-10" min="1" max="10"> l: <input
+								placeholder="1-20" min="1" max="20" value=9> l: <input
 								type="number" class="form-control" id="insertl"
-								placeholder="1-10" min="1" max="10">
-							<p></p>
-							<input type="submit">
+								placeholder="1-20" min="1" max="20" value=10>
+								<button id="maximaCalculate" type="button"
+							class="btn btn-outline btn-primary btn-xs">Calculate</button>
 						</form>
-Chat Conversation End
+							</div>
+						</div>		
 								
 					</div>
-					<div class="panel-footer">
-						<button id="maximaCalculate" type="button"
-							class="btn btn-outline btn-primary btn-xs">Calculate</button>
-					</div>
+					<!-- <div class="panel-footer"></div> -->
 				</div>
 			</div>
 			<div class="modal fade" id="MAXIMA_calc" role="dialog">
@@ -163,7 +163,18 @@ Chat Conversation End
 
 			<script type="text/javascript">
 	   					$( "#maximaCalculate" ).click(function() {
-	   						maximas_getData(permno_page);
+	   						
+	   						var myNode = document.getElementById("maxima_container");
+							while (myNode.firstChild) {
+							    myNode.removeChild(myNode.firstChild);
+							}
+	   						
+	   						var value_D = $('#insertD').val();
+	   						var value_d = $('#insertd').val();
+	   						var value_l = $('#insertl').val();
+	   						var value_L = $('#insertL').val();
+	   						//console.log("D: "+value_D+" d: "+value_d+"l: "+value_l+" L: "+value_L);
+	   						maximas_getData(permno_page,value_D,value_d,value_L,value_l);
 	   					});
    					</script>
 

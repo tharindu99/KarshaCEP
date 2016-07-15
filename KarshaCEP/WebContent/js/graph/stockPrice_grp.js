@@ -58,7 +58,7 @@ function draw_pricegrap (id,data) {
     });
 }
 var count_maximas = 0;
-function maximas_getData(permno) {
+function maximas_getData(permno,D,d,L,l) {
 		
 	var maxima_cantainer = document.getElementById("maxima_container");
 	var nw_elmnt = document.createElement('div');
@@ -69,14 +69,14 @@ function maximas_getData(permno) {
 	    maxima_result.appendChild(node_txt);
 	    nw_elmnt.appendChild(maxima_result); 
 	    maxima_cantainer.appendChild(nw_elmnt);
-	console.log(permno);
-	var url = "stockMaxima?PERMNO="+permno;
+	//console.log(permno);
+	var url = "stockMaxima?PERMNO="+permno+"&D="+D+"&d="+d+"&L="+L+"&l="+l;
 	$.ajax({
 		type : 'GET',
 		url : url,
 		dataType : 'json',
 		success : function(data) {
-			console.log(data.length);
+			//console.log(data.length);
 				for (var i = 0; i < data.length; i++) {
 					create_elmnt("maxima_",i);
 					draw_maxima(data[i],"maxima_"+i,i+1);

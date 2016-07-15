@@ -9,13 +9,12 @@ import com.lsf.entity.Stock_MinimaMaxima;
 
 public class logics {
 
-	public String  maxima_calculate(int permno) {
+	public String  maxima_calculate(int permno,int D_got,int d_got,int L,int l ) {
 		
 		//window details//
-		double d = 0.04;
-		double D = 0.04;
-		int l = 10;
-		int L = 9;
+		double d = d_got/100;
+		double D = D_got/100;
+		
 		
 		graph_predata grp = new graph_predata();
 		ArrayList<Stock_MinimaMaxima> stk_maxima = grp.Maxima_dataCollect(permno);	
