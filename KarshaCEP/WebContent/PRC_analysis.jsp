@@ -56,8 +56,8 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.jsp">Home</a></li>
-					<li><a href="PRC_analysis.jsp">PRC</a></li>
+					<li><a href="index.jsp">Home</a></li>
+					<li class="active"><a href="PRC_analysis.jsp">PRC</a></li>
 					<li><a href="#">About</a></li>
 				</ul>
 			</div>
@@ -108,7 +108,24 @@
 							the Maximas for this selected equity.</p>
 						<p>
 							&nbsp;<a href="#MAXIMA_calc" data-toggle="modal">How Maxima
-								calculation works. </a>
+								calculation works. </a></p>
+								
+								<form class="form-inline" role="form">
+							<h3>Enter the Values</h3>
+							D:<input type="number" class="form-control" id="insertD"
+								placeholder="1-5" min="1" max="5"> d:<input
+								type="number" class="form-control" id="insertd"
+								placeholder="1-5" min="1" max="5">
+							<p></p>
+							L: <input type="number" class="form-control" id="insertL"
+								placeholder="1-10" min="1" max="10"> l: <input
+								type="number" class="form-control" id="insertl"
+								placeholder="1-10" min="1" max="10">
+							<p></p>
+							<input type="submit">
+						</form>
+Chat Conversation End
+								
 					</div>
 					<div class="panel-footer">
 						<button id="maximaCalculate" type="button"
