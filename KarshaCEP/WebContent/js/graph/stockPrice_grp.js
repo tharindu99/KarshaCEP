@@ -27,8 +27,6 @@ function draw_pricegrap (id,data) {
             },
             json : data,
 			mimeType : 'json'
-            
-           
         },
         axis: {
             x: {
@@ -54,18 +52,13 @@ function draw_pricegrap (id,data) {
                 }
             }
         },
-//            value: d3.format(',') // apply this format to both y and y2
-    /*    subchart: {
-      show: true
-    },*/
     zoom: {
         enabled: true
     }
     });
-   
 }
 var count_maximas = 0;
-function maximas_getData(permno) {
+function maximas_getData(permno,D,d,L,l) {
 		
 	var maxima_cantainer = document.getElementById("maxima_container");
 	var nw_elmnt = document.createElement('div');
@@ -76,17 +69,17 @@ function maximas_getData(permno) {
 	    maxima_result.appendChild(node_txt);
 	    nw_elmnt.appendChild(maxima_result); 
 	    maxima_cantainer.appendChild(nw_elmnt);
-	console.log(permno);
-	var url = "stockMaxima?PERMNO="+permno;
+	//console.log(permno);
+	var url = "stockMaxima?PERMNO="+permno+"&D="+D+"&d="+d+"&L="+L+"&l="+l;
 	$.ajax({
 		type : 'GET',
 		url : url,
 		dataType : 'json',
 		success : function(data) {
-			console.log(data.length);
+			//console.log(data.length);
 				for (var i = 0; i < data.length; i++) {
 					create_elmnt("maxima_",i);
-					draw_maxima(data[i],"maxima_"+i);
+					draw_maxima(data[i],"maxima_"+i,i+1);
 				}
 			},
 			error : function(data, error) {
@@ -96,7 +89,12 @@ function maximas_getData(permno) {
 	});
 }
 
-function draw_maxima(data,id) {
+function draw_maxima(data,id,count) {
+	//console.log(data);
+	var dup_arr = data.PseudoPRC;
+	var max = Math.max.apply(null, dup_arr);
+	var max_key = dup_arr.indexOf(max);
+	//console.log(data.PseudoPRC[max_key]);
 	
     var chart1 = c3.generate({
         bindto: "#"+id,
@@ -113,6 +111,13 @@ function draw_maxima(data,id) {
         	 },
         	 json : data,
              mimeType : 'json'
+        },
+        grid: {
+            x: {
+                lines: [
+                    {value: data.AllDates[max_key] , text: 'MAXIMA',position: 'middle'},
+                ]
+               }
         },
         axis: {
             x: {
@@ -142,8 +147,13 @@ function draw_maxima(data,id) {
         enabled: true
     }
     });
+    d3.select('#'+id+' svg').append('text')
+    .attr('x', 150)
+    .attr('y', 10)
+    .attr('text-anchor', 'middle')
+    .style('font-size', '1.4em')
+    .text('Maxima - '+count);
 }
-
 function create_elmnt(tag,cnt) {
 	var maxima_cantainer = document.getElementById("maxima_container");
 	var nw_elmnt = document.createElement('div');

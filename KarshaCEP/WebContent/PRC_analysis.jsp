@@ -56,8 +56,8 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.jsp">Home</a></li>
-					<li><a href="PRC_analysis.jsp">PRC</a></li>
+					<li><a href="index.jsp">Home</a></li>
+					<li class="active"><a href="PRC_analysis.jsp">PRC</a></li>
 					<li><a href="#">About</a></li>
 				</ul>
 			</div>
@@ -103,15 +103,59 @@
 			<div class="col-lg-12">
 				<div class="panel panel-primary">
 					<div class="panel-heading">Maxima Calculation</div>
-					<div class="panel-body"></div>
-					<div class="panel-footer">
-						<button id="maximaCalculate" type="button"
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-6">
+								<p>Please click the following "calculate" button to calculate
+							the Maximas for this selected equity.						
+							&nbsp;<a href="#MAXIMA_calc" data-toggle="modal">How Maxima
+								calculation works. </a></p>
+							</div>
+							<div class="col-lg-6">
+								<form class="form-inline" role="form">
+							<h5>Maxima Calculation Parameters</h5>
+							D:<input type="number" class="form-control" id="insertD"
+								placeholder="1-10" min="1" max="10" value=5> d:<input
+								type="number" class="form-control" id="insertd"
+								placeholder="1-10" min="1" max="10" value=5>
+							
+							L: <input type="number" class="form-control" id="insertL"
+								placeholder="1-20" min="1" max="20" value=9> l: <input
+								type="number" class="form-control" id="insertl"
+								placeholder="1-20" min="1" max="20" value=10>
+								<button id="maximaCalculate" type="button"
 							class="btn btn-outline btn-primary btn-xs">Calculate</button>
+						</form>
+							</div>
+						</div>		
+								
+					</div>
+					<!-- <div class="panel-footer"></div> -->
+				</div>
+			</div>
+			<div class="modal fade" id="MAXIMA_calc" role="dialog">
+				<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">
+								<center>MAXIMA Calculation.</center>
+							</h4>
+						</div>
+						<div class="modal-body">
+							<img src="img/MAXIMAclaculation.jpg"
+								style="max-width: 100%; height: auto;">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div id="maxima_container" class="row">          
-			</div>
+
+			<div id="maxima_container" class="row"></div>
 
 			<script src="js/bootstrap.min.js"></script>
 			<script src="js/d3.min.js"></script>
@@ -119,7 +163,18 @@
 
 			<script type="text/javascript">
 	   					$( "#maximaCalculate" ).click(function() {
-	   						maximas_getData(permno_page);
+	   						
+	   						var myNode = document.getElementById("maxima_container");
+							while (myNode.firstChild) {
+							    myNode.removeChild(myNode.firstChild);
+							}
+	   						
+	   						var value_D = $('#insertD').val();
+	   						var value_d = $('#insertd').val();
+	   						var value_l = $('#insertl').val();
+	   						var value_L = $('#insertL').val();
+	   						//console.log("D: "+value_D+" d: "+value_d+"l: "+value_l+" L: "+value_L);
+	   						maximas_getData(permno_page,value_D,value_d,value_L,value_l);
 	   					});
    					</script>
 
