@@ -12,8 +12,11 @@ public class logics {
 	public String  maxima_calculate(int permno,int D_got,int d_got,int L,int l ) {
 		
 		//window details//
-		double d = d_got/100;
-		double D = D_got/100;
+		double d = (double)d_got/100;
+		double D = (double)D_got/100;
+		
+		System.out.println("d : "+d+" D : "+D);
+		
 		
 		
 		graph_predata grp = new graph_predata();
@@ -153,6 +156,7 @@ public class logics {
 			//is boom //
 			double boom =(stk_arr.get(i).getPseudoPRC()-stk_arr.get(i).getPreMin())/stk_arr.get(i).getPreMin();
 			if (boom>d) {
+				//System.out.println("d : "+d);
 				stk_arr.get(i).setIsBoom(true);
 			}else{
 				stk_arr.get(i).setIsBoom(false);
