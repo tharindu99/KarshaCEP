@@ -18,8 +18,6 @@
 <link href="css/c3.css" rel="stylesheet">
 <link rel="stylesheet" type="css/easyui.css">
 <script src="js/jquery.min.js"></script>
-
-
 <style type="text/css">
 .c3-circles-Turnover {
 	display: none;
@@ -163,12 +161,10 @@
 
 			<script type="text/javascript">
 	   					$( "#maximaCalculate" ).click(function() {
-	   						
 	   						var myNode = document.getElementById("maxima_container");
 							while (myNode.firstChild) {
 							    myNode.removeChild(myNode.firstChild);
 							}
-	   						
 	   						var value_D = $('#insertD').val();
 	   						var value_d = $('#insertd').val();
 	   						var value_l = $('#insertl').val();
@@ -184,7 +180,6 @@
 							$("#m<%=(i+1)%>").click(function(){
 								permno_page = <%=stk_data.get(i).getPermno()%>;
 								StockPRC_graph(<%=stk_data.get(i).getPermno()%>, '#<%=stk_data.get(i).getTsymbol()%>');
-								
 								var myNode = document.getElementById("maxima_container");
 								while (myNode.firstChild) {
 								    myNode.removeChild(myNode.firstChild);
@@ -204,10 +199,7 @@
 						});
 						$.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
 						    options.async = true;
-						});
-					
-						    
-						 
+						});		 
 					</script>
 </body>
 </html>

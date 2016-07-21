@@ -71,12 +71,13 @@ function maximas_getData(permno,D,d,L,l) {
 	    maxima_cantainer.appendChild(nw_elmnt);
 	//console.log(permno);
 	var url = "stockMaxima?PERMNO="+permno+"&D="+D+"&d="+d+"&L="+L+"&l="+l;
+	console.log("URL maxima : "+url);
 	$.ajax({
 		type : 'GET',
 		url : url,
 		dataType : 'json',
 		success : function(data) {
-			//console.log(data.length);
+			console.log(url);
 				for (var i = 0; i < data.length; i++) {
 					create_elmnt("maxima_",i);
 					draw_maxima(data[i],"maxima_"+i,i+1);
