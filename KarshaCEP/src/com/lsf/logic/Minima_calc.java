@@ -1,15 +1,13 @@
 package com.lsf.logic;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 
 import com.lsf.cep.graph_predata;
 import com.lsf.entity.Stock_MinimaMaxima;
 
-public class logics {
+public class Minima_calc {
 
-	public String  maxima_calculate(int permno,int D_got,int d_got,int L,int l ) {
+	public String  minima_calculate(int permno,int D_got,int d_got,int L,int l ) {
 		
 		//window details//
 		double d = (double)d_got/100;
@@ -20,8 +18,8 @@ public class logics {
 		
 		
 		graph_predata grp = new graph_predata();
-		ArrayList<Stock_MinimaMaxima> stk_maxima = grp.Maxima_dataCollect(permno);	
-		ArrayList<Stock_MinimaMaxima> stk_splited = split_update(stk_maxima);	
+		ArrayList<Stock_MinimaMaxima> stk_minima = grp.M_dataCollect(permno);	
+		ArrayList<Stock_MinimaMaxima> stk_splited = split_update(stk_minima);	
 		ArrayList<Stock_MinimaMaxima> stk_pseudoPRCN = PseudoPRCN_update(stk_splited);
 		ArrayList<Stock_MinimaMaxima> stk_rawvol = RawVol_update(stk_pseudoPRCN);
 		ArrayList<Stock_MinimaMaxima> stk_pseudoprc_hack = PseudoPRC_hack_update(stk_rawvol);
@@ -36,8 +34,8 @@ public class logics {
 			//System.out.println(stock_MinimaMaxima.isIsmax()+" : "+stock_MinimaMaxima.getDate()+" : "+stock_MinimaMaxima.isIsBust());
 		}*/
 		String [][] LT = getLocalTops(stk_completed);
-		String maximas = grp.Maxima_collectData(LT,permno);
-		return maximas;
+		String minimas = grp.M_collectData(LT,permno);
+		return minimas;
 	}
 		
 	public ArrayList<Stock_MinimaMaxima> split_update(ArrayList<Stock_MinimaMaxima> stk_arr) {
@@ -125,24 +123,24 @@ public class logics {
 	public ArrayList<Stock_MinimaMaxima> WindowMax_update(ArrayList<Stock_MinimaMaxima> stk_arr,int l,int L) {
 		for (int i = 0; i < stk_arr.size(); i++) {
 			if(i<=l){
-				stk_arr.get(i).setWindowMax(MaxCalculate(0,i+L, stk_arr));
+				stk_arr.get(i).setWindowMax(MinCalculate(0,i+L, stk_arr));
 			}else if(i+L>=stk_arr.size()){
-				stk_arr.get(i).setWindowMax(MaxCalculate(i-l,stk_arr.size()-1, stk_arr));
+				stk_arr.get(i).setWindowMax(MinCalculate(i-l,stk_arr.size()-1, stk_arr));
 			}else {
-				stk_arr.get(i).setWindowMax(MaxCalculate(i-l,i+L, stk_arr));
+				stk_arr.get(i).setWindowMax(MinCalculate(i-l,i+L, stk_arr));
 			}
 		}
 		return stk_arr;
 	}
 	
-	public double MaxCalculate(int low,int high, ArrayList<Stock_MinimaMaxima>stk_arr) {
-		double maxValue = 0;
+	public double MinCalculate(int low,int high, ArrayList<Stock_MinimaMaxima>stk_arr) {
+		double minValue = 0;
 		for (int j = low; j <= high; j++) {
-			if(maxValue<stk_arr.get(j).getPseudoPRC()){
-				maxValue = stk_arr.get(j).getPseudoPRC();
+			if(minValue<stk_arr.get(j).getPseudoPRC()){
+				minValue = stk_arr.get(j).getPseudoPRC();
 			}
 		}
-		return maxValue;	
+		return minValue;	
 	}
 
 	public ArrayList<Stock_MinimaMaxima> is_function_update(ArrayList<Stock_MinimaMaxima>stk_arr,double d,double D) {

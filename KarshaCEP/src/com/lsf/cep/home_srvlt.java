@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.lsf.logic.logics;
+import com.lsf.logic.Maxima_calc;
+import com.lsf.logic.Minima_calc;
 import com.lsf.siddhi.siddhi_core;
 
 
@@ -53,7 +54,8 @@ public class home_srvlt extends HttpServlet {
 		String userPath = request.getServletPath();
 		PrintWriter pwr = response.getWriter();
 		graph_predata grp = new graph_predata();
-		logics logic = new logics();
+		Maxima_calc Maxima_caclulate = new Maxima_calc();
+		Minima_calc Minima_caclulate = new Minima_calc();
 		if (userPath.equals("/stockprice")) {
 			int PERMNO = Integer.parseInt(request.getParameter("PERMNO"));
 			pwr.print(grp.draw_stockprice(PERMNO));
@@ -67,7 +69,14 @@ public class home_srvlt extends HttpServlet {
 			int d = Integer.parseInt(request.getParameter("d"));
 			int L = Integer.parseInt(request.getParameter("L"));
 			int l = Integer.parseInt(request.getParameter("l"));
-			pwr.print(logic.maxima_calculate(PERMNO,D,d,L,l));
+			pwr.print(Maxima_caclulate.maxima_calculate(PERMNO,D,d,L,l));
+		}else if (userPath.equals("/stockMinima")) {
+			int PERMNO = Integer.parseInt(request.getParameter("PERMNO"));
+			int D = Integer.parseInt(request.getParameter("D"));
+			int d = Integer.parseInt(request.getParameter("d"));
+			int L = Integer.parseInt(request.getParameter("L"));
+			int l = Integer.parseInt(request.getParameter("l"));
+			pwr.print(Minima_caclulate.minima_calculate(PERMNO,D,d,L,l));
 		}
 	}
 
