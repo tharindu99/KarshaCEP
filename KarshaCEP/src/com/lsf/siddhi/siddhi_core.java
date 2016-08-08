@@ -26,7 +26,9 @@ public class siddhi_core {
 		});
 		InputHandler inputHandler = executionPlanRuntime.getInputHandler("cseEventStream");
 		executionPlanRuntime.start();
-		  
+		
+		
+		
 		try {
 			inputHandler.send(new Object[]{"ABC", 700f, 100l});
 			inputHandler.send(new Object[]{"WSO2", 60.5f, 200l});

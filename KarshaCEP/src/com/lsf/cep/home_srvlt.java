@@ -77,6 +77,9 @@ public class home_srvlt extends HttpServlet {
 			int L = Integer.parseInt(request.getParameter("L"));
 			int l = Integer.parseInt(request.getParameter("l"));
 			pwr.print(Minima_caclulate.minima_calculate(PERMNO,D,d,L,l));
+		}else if (userPath.equals("/siddhi")) {
+			siddhi_core siddhi = new siddhi_core();
+			siddhi.siddhi_test();
 		}
 	}
 

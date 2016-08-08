@@ -19,5 +19,6 @@
   	<url-pattern>/stockDetails</url-pattern>
   	<url-pattern>/stockMaxima</url-pattern>
   	<url-pattern>/stockMinima</url-pattern>
+  	<url-pattern>/siddhi</url-pattern>
   </servlet-mapping>
 </web-app>
