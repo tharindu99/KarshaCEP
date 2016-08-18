@@ -180,13 +180,13 @@
 									<div class="col-lg-6">
 										<form class="form-inline" role="form">
 											<h5>Minima Calculation Parameters</h5>
-											D:<input type="number" class="form-control" id="insertD"
+											D:<input type="number" class="form-control" id="insertDmin"
 												placeholder="1-10" min="1" max="10" value=5> d:<input
-												type="number" class="form-control" id="insertd"
+												type="number" class="form-control" id="insertdmin"
 												placeholder="1-10" min="1" max="10" value=5> L: <input
-												type="number" class="form-control" id="insertL"
+												type="number" class="form-control" id="insertLmin"
 												placeholder="1-20" min="1" max="20" value=9> l: <input
-												type="number" class="form-control" id="insertl"
+												type="number" class="form-control" id="insertlmin"
 												placeholder="1-20" min="1" max="20" value=10> <br>
 											<br>
 											<button id="minimaCalculate" type="button"
@@ -263,6 +263,21 @@
 	   						var value_L = $('#insertL').val();
 	   						//console.log("D: "+value_D+" d: "+value_d+"l: "+value_l+" L: "+value_L);
 	   						maximas_getData(permno_page,value_D,value_d,value_L,value_l);
+	   					});
+   					</script>
+   					
+   		<script type="text/javascript">
+	   					$( "#minimaCalculate" ).click(function() {
+	   						var myNode = document.getElementById("maxima_container");
+							while (myNode.firstChild) {
+							    myNode.removeChild(myNode.firstChild);
+							}
+	   						var value_Dmin = $('#insertDmin').val();
+	   						var value_dmin = $('#insertdmin').val();
+	   						var value_lmin = $('#insertlmin').val();
+	   						var value_Lmin = $('#insertLmin').val();
+	   						//console.log("D: "+value_D+" d: "+value_d+"l: "+value_l+" L: "+value_L);
+	   						minimas_getData(permno_page,value_Dmin,value_dmin,value_Lmin,value_lmin);
 	   					});
    					</script>
 

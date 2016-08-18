@@ -22,7 +22,7 @@ import java.math.BigInteger;
 import com.google.gson.reflect.TypeToken;
 
 public class graph_predata extends DBopenConnection {
-	
+
 	public JsonObject draw_stockprice (int PERMNO) {
 		DBopen_me();
 		String Sql_stockprice = "SELECT date as AllDates,PRC,PseudoPRC,Turnover FROM stock WHERE PERMNO ="+PERMNO+";";
