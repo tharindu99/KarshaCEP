@@ -148,4 +148,12 @@ public class graph_predata extends DBopenConnection {
 		DBclose_me();
 		return arrlist_out.toString();
 	}
+
+	public Iterator siddhi_stream(int PERMNO) {
+		DBopen_me();
+		String Sql_stock_individual = "SELECT date,PRC,RET,SHROUT,VOL,PseudoPRC,PseudoPRCn,RawVol,Turnover FROM stock WHERE PERMNO="+PERMNO+";" ;
+		Iterator stk = session.createSQLQuery(Sql_stock_individual).list().iterator();
+		DBclose_me();
+		return stk;
+	}
 }

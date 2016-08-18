@@ -1,11 +1,15 @@
 package com.lsf.siddhi;
 
+import java.util.Iterator;
+
 import org.wso2.siddhi.core.ExecutionPlanRuntime;
 import org.wso2.siddhi.core.SiddhiManager;
 import org.wso2.siddhi.core.event.Event;
 import org.wso2.siddhi.core.query.output.callback.QueryCallback;
 import org.wso2.siddhi.core.stream.input.InputHandler;
 import org.wso2.siddhi.core.util.EventPrinter;
+
+import com.lsf.cep.graph_predata;
 
 public class siddhi_core {
 
@@ -27,9 +31,16 @@ public class siddhi_core {
 		InputHandler inputHandler = executionPlanRuntime.getInputHandler("cseEventStream");
 		executionPlanRuntime.start();
 		
-		
+		graph_predata grp_siddhi = new graph_predata();
+		Iterator stk = grp_siddhi.siddhi_stream(38703);
 		
 		try {
+			while ( stk.hasNext() ) {
+			    Object[] tuple = (Object[]) stk.next();
+			    inputHandler.send(tuple);
+			}
+			
+			/*
 			inputHandler.send(new Object[]{"ABC", 700f, 100l});
 			inputHandler.send(new Object[]{"WSO2", 60.5f, 200l});
 			inputHandler.send(new Object[]{"DEF", 700f, 100l});
@@ -38,7 +49,8 @@ public class siddhi_core {
 			inputHandler.send(new Object[]{"DEF", 700f, 100l});
 			inputHandler.send(new Object[]{"ABC", 700f, 100l});
 			inputHandler.send(new Object[]{"WSO2", 60.5f, 200l});
-			inputHandler.send(new Object[]{"DEF", 700f, 100l});
+			inputHandler.send(new Object[]{"DEF", 700f, 100l});*/
+			
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
