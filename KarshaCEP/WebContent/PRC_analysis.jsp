@@ -138,13 +138,15 @@
 			<div class="col-xs-12" style="height: 10px;"></div>
 			<div class="col-lg-12">
 				<div class="panel panel-primary">
-					<div class="panel-heading">Maxima Calculation</div>
+					<div class="panel-heading">Maxima and Minima Calculation</div>
 					<div class="panel-body">
 						<div id="max_min_tabs">
-							<ul class = "active">
-								<li><a href="#tabs_2" >Maxima calculator</a></li>
-								<li><a href="#tabs_3">Minima calculator</a></li>
-							</ul>
+							<div id = "2tabs_max_min">
+								<ul class = "active">
+									<li><a href="#tabs_2" >Maxima calculator</a></li>
+									<li><a href="#tabs_3">Minima calculator</a></li>
+								</ul>
+							</div>
 							<div class="row">
 								<div id="tabs_2">
 									<p>
@@ -250,6 +252,15 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/d3.min.js"></script>
 		<script src="js/c3.js"></script>
+		
+		<script type="text/javascript">
+	   					$( "#2tabs_max_min" ).click(function() {
+	   						var myNode = document.getElementById("maxima_container");
+							while (myNode.firstChild) {
+							    myNode.removeChild(myNode.firstChild);
+							}
+	   					});
+	   				</script>
 
 		<script type="text/javascript">
 	   					$( "#maximaCalculate" ).click(function() {

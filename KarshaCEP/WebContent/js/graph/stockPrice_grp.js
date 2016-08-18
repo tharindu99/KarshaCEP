@@ -97,14 +97,13 @@ function minimas_getData(permno,D,d,L,l) {
 	    nw_elmnt.setAttribute("class","col-lg-12");
 	var maxima_result = document.createElement('h3');
 	    maxima_result.setAttribute("class","col-lg-12");
-	var node_txt = document.createTextNode("Maxima Result");
+	var node_txt = document.createTextNode("Minima Result");
 	    maxima_result.appendChild(node_txt);
 	    nw_elmnt.appendChild(maxima_result); 
 	    maxima_cantainer.appendChild(nw_elmnt);
 	//console.log(permno);
 	var url = "stockMinima?PERMNO="+permno+"&D="+D+"&d="+d+"&L="+L+"&l="+l;
 	console.log("URL maxima : "+url);
-	document.createTextNode("Maxima Result");
 	$.ajax({
 		type : 'GET',
 		url : url,
