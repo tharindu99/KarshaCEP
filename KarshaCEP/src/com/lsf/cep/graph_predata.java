@@ -100,9 +100,7 @@ public class graph_predata extends DBopenConnection {
 	
 	public Object nullRemover(Object a) {
 		if(a==null )return 0;
-		else return a;
-		
-		 
+		else return a;	 
 	}
 
 	public String Maxima_collectData(String[][] maximaDates, int permno) {
