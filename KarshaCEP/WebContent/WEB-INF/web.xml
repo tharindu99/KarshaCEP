@@ -18,5 +18,6 @@
   	<url-pattern>/stockprice</url-pattern>
   	<url-pattern>/stockDetails</url-pattern>
   	<url-pattern>/stockMaxima</url-pattern>
+  	<url-pattern>/stockMinima</url-pattern>
   </servlet-mapping>
 </web-app>

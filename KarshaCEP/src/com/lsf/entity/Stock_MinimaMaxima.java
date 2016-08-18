@@ -69,7 +69,7 @@ public class Stock_MinimaMaxima {
 	}
 	public Double getPostMin() {
 		return PostMin;
-	}
+	}	
 	public void setPostMin(Double postMin) {
 		PostMin = postMin;
 	}
@@ -85,6 +85,37 @@ public class Stock_MinimaMaxima {
 	public void setWindowMax(Double windowMax) {
 		WindowMax = windowMax;
 	}
+	/*public Double getPreMax() {
+		return PreMax;
+	}
+	public void setPreMax(Double preMax) {
+		PreMax = preMax;
+	}
+	public int getPreMaxRow() {
+		return PreMaxRow;
+	}
+	public void setPreMaxRow(int preMaxRow) {
+		PreMaxRow = preMaxRow;
+	}
+	public Double getPostMax() {
+		return PostMax;
+	}	
+	public void setPostMax(Double postMax) {
+		PostMax = postMax;
+	}
+	public int getPostMaxRow() {
+		return PostMaxRow;
+	}
+	public void setPostMaxRow(int postMaxRow) {
+		PostMaxRow = postMaxRow;
+	}
+	
+	public Double getWindowMin() {
+		return WindowMin;
+	}
+	public void setWindowMin(Double windowMin) {
+		WindowMin = windowMin;
+	}*/
 	public int getSHROUT() {
 		return SHROUT;
 	}

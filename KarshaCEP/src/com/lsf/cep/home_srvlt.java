@@ -62,12 +62,21 @@ public class home_srvlt extends HttpServlet {
 		} else if (userPath.equals("/stockDetails")) {
 			pwr.print(grp.stock_details());
 		}else if (userPath.equals("/stockMaxima")) {
+			System.out.println("uditha");
 			int PERMNO = Integer.parseInt(request.getParameter("PERMNO"));
 			int D = Integer.parseInt(request.getParameter("D"));
 			int d = Integer.parseInt(request.getParameter("d"));
 			int L = Integer.parseInt(request.getParameter("L"));
 			int l = Integer.parseInt(request.getParameter("l"));
 			pwr.print(logic.maxima_calculate(PERMNO,D,d,L,l));
+		}else if (userPath.equals("/stockMinima")) {
+			//System.out.println("anushka");
+			int PERMNO = Integer.parseInt(request.getParameter("PERMNO"));
+			int D = Integer.parseInt(request.getParameter("D"));
+			int d = Integer.parseInt(request.getParameter("d"));
+			int L = Integer.parseInt(request.getParameter("L"));
+			int l = Integer.parseInt(request.getParameter("l"));
+			pwr.print(logic.minima_calculate(PERMNO,D,d,L,l));
 		}
 	}
 
