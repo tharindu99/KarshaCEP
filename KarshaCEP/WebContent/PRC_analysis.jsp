@@ -145,6 +145,9 @@
 								<ul class = "active">
 									<li><a href="#tabs_2" >Maxima calculator</a></li>
 									<li><a href="#tabs_3">Minima calculator</a></li>
+									<!--just an experiment  -->
+									<li><a href="#tabs_4">DB updater</a></li>
+									<!--just an experiment  -->
 								</ul>
 							</div>
 							<div class="row">
@@ -197,6 +200,7 @@
 										</form>
 									</div>
 								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -291,7 +295,7 @@
 	   						minimas_getData(permno_page,value_Dmin,value_dmin,value_Lmin,value_lmin);
 	   					});
    					</script>
-
+   					
 		<script type="text/javascript" src="js/graph/stockPrice_grp.js"></script>
 		<script type="text/javascript">
 						<%for(int i=1;i<stk_data.size();i++){%>
