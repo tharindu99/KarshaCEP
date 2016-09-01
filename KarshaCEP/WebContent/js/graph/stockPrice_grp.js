@@ -5,6 +5,7 @@ function StockPRC_graph(permno,id){
 		url : url,
 		dataType : 'json',
 		success : function(data) {
+			negSlope_getdata(id,data,url,permno);
 			draw_pricegrap(id,data);
 			},
 			error : function(data, error) {
@@ -14,6 +15,78 @@ function StockPRC_graph(permno,id){
 	});
 }
 
+function negSlope_getdata(id,data,url,permno){
+	var url = "stockprice?PERMNO="+permno;
+	console.log("new element loaded: anushka uditha"+data);
+	$.ajax({
+		type : 'GET',
+		url : url,
+		dataType : 'json',
+		success : function(data) {
+			console.log("orginL :"+data);
+			var dates=[], Pprice=[], slope=[];
+			dates.push("x");
+			slope.push("Slope value");
+			for(var i=0; i<Object.keys(data.AllDates).length; i++){
+				dates.push(data.AllDates[i]);
+				Pprice.push(data.PseudoPRC[i]);
+				//console.log(dates[i]);
+			}
+			for(var i=0; i<Object.keys(data.AllDates).length; i++){
+				slope.push(Pprice[i+1]-Pprice[i]);
+				//console.log(slope[i]);
+			}
+			draw_negSlope(dates,slope);
+			console.log(" new element loaded second:"+url);
+			},
+			error : function(data, error) {
+				console.log(error+"data doesnt loading correctly");
+			},
+			async : false
+	});
+	//console.log(data);
+}
+
+function draw_negSlope(dates,slope) {
+	console.log(dates);
+	var dates1 = dates;
+	var slope1  = slope;
+	
+    var chart = c3.generate({
+    	bindto:"#drop",
+        data: {
+            x: 'x',
+            xFormat: '%Y-%m-%d', // 'xFormat' can be used as custom format of 'x'
+            columns: [
+                      dates1,slope1  
+            ]
+        },
+        axis: {
+            x: {
+                type: 'timeseries',
+                tick: {
+                    format: '%Y-%m-%d'
+                },
+                label:'Time',
+            },
+            y:{
+            	show: true,
+                label:'negSlopeData in $',
+            } 
+        },
+        tooltip: {
+            format: {
+                value: function (value, ratio, id) {
+                    var format = id === 'Turnover' ? d3.format(',') : d3.format('$');
+                    return format(value);
+                }
+            }
+        },
+    zoom: {
+        enabled: true
+    }
+    });
+}
 function draw_pricegrap (id,data) {
     var chart = c3.generate({
         bindto: id,
