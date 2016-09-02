@@ -137,8 +137,8 @@
 			</div>
 			<div class="col-xs-12" style="height: 10px;"></div>
 			<div class="col-lg-12">
-			<div id="negSlopeHead"><h3>Negative slope</h3></div>
-			<div id="drop"></div>
+			<!-- <div id="negSlopeHead"><h3>Negative slope</h3></div>
+			<div id="drop"></div> -->
 				<div class="panel panel-primary">
 					<div class="panel-heading">Maxima and Minima Calculation</div>
 					<div class="panel-body">
@@ -147,6 +147,7 @@
 								<ul class = "active">
 									<li><a href="#tabs_2" >Maxima calculator</a></li>
 									<li><a href="#tabs_3">Minima calculator</a></li>
+									<li><a href="#tabs_4">Negative slope</a></li>
 								</ul>
 							</div>
 							<div class="row">
@@ -198,6 +199,11 @@
 												Minima</button>
 										</form>
 									</div>
+								</div>
+								
+								<div id="tabs_4">
+									<div id="negSlopeHead"><h5>Graph</h5></div>
+									<div id="drop" align="left"></div>
 								</div>
 								
 							</div>

@@ -61,6 +61,13 @@ function draw_negSlope(dates,slope) {
                       dates1,slope1  
             ]
         },
+        size: {
+        	  width: 1050,
+        	  height: 300
+        },
+        point:{
+        	show:false,
+        },
         axis: {
             x: {
                 type: 'timeseries',
@@ -73,14 +80,6 @@ function draw_negSlope(dates,slope) {
             	show: true,
                 label:'negSlopeData in $',
             } 
-        },
-        tooltip: {
-            format: {
-                value: function (value, ratio, id) {
-                    var format = id === 'Turnover' ? d3.format(',') : d3.format('$');
-                    return format(value);
-                }
-            }
         },
     zoom: {
         enabled: true
