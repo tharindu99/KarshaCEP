@@ -78,7 +78,7 @@ function draw_negSlope(dates,slope) {
             },
             y:{
             	show: true,
-                label:'negSlopeData in $',
+                label:'Slope values',
             } 
         },
     zoom: {
