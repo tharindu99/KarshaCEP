@@ -29,7 +29,7 @@ function negSlope_getdata(id,data,url,permno){
 			dates.push("x");
 			slope.push("Slope value");
 			var sizeOfArr = Object.keys(data.AllDates).length;
-			for(var i=0; i<sizeOfArr; i=i+5){
+			for(var i=0; i<sizeOfArr; i++){
 				dates.push(data.AllDates[i]);
 				Pprice.push(data.PseudoPRC[i]);
 				//console.log(dates[i]);
