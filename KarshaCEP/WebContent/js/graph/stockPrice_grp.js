@@ -9,7 +9,7 @@ function StockPRC_graph(permno,id){
 			draw_pricegrap(id,data);
 			},
 			error : function(data, error) {
-				console.log(error+"data doesnt loading correctly");
+				console.log(error+"data doesn't loading correctly");
 			},
 			async : false
 	});
@@ -18,6 +18,7 @@ function StockPRC_graph(permno,id){
 function negSlope_getdata(id,data,url,permno){
 	var url = "stockprice?PERMNO="+permno;
 	console.log("new element loaded: anushka uditha"+data);
+	
 	$.ajax({
 		type : 'GET',
 		url : url,
@@ -27,14 +28,15 @@ function negSlope_getdata(id,data,url,permno){
 			var dates=[], Pprice=[], slope=[];
 			dates.push("x");
 			slope.push("Slope value");
-			for(var i=0; i<Object.keys(data.AllDates).length; i++){
+			var sizeOfArr = Object.keys(data.AllDates).length;
+			for(var i=0; i<sizeOfArr; i=i+5){
 				dates.push(data.AllDates[i]);
 				Pprice.push(data.PseudoPRC[i]);
 				//console.log(dates[i]);
 			}
-			for(var i=0; i<Object.keys(data.AllDates).length; i++){
+			for(var i=0; i<sizeOfArr; i++){
 				slope.push(Pprice[i+1]-Pprice[i]);
-				//console.log(slope[i]);
+				console.log(slope[i]);
 			}
 			draw_negSlope(dates,slope);
 			console.log(" new element loaded second:"+url);
@@ -80,6 +82,13 @@ function draw_negSlope(dates,slope) {
             	show: true,
                 label:'Slope values',
             } 
+        },
+        grid: {
+            y: {
+                lines: [
+                    {value: 0, text: 'Slope ="0"', position: 'end'}
+                ]
+            }
         },
     zoom: {
         enabled: true

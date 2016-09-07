@@ -155,7 +155,7 @@
 									<p>
 										Please click the following "calculate" button to calculate the
 										Maximas for this selected equity. &nbsp;<a href="#MAXIMA_calc"
-											data-toggle="modal">How Maxima calculation works. </a>
+											data-toggle="modal"><u>How Maxima calculation works. </u> </a>
 									</p>
 									
 									<div class="col-lg-6">
@@ -180,7 +180,7 @@
 									<p>
 										Please click the following "calculate" button to calculate the
 										Minimas for this selected equity. &nbsp;<a href="#MINIMA_calc"
-											data-toggle="modal">How Minima calculation works. </a>
+											data-toggle="modal"><u>How Minima calculation works. </u></a>
 									</p>
 									<div class="col-lg-6">
 										<form class="form-inline" role="form">
@@ -202,6 +202,10 @@
 								</div>
 								
 								<div id="tabs_4">
+									<!-- <p> Enter the range of the date which need to calculate the slope
+										<input type="number" class="form-control" id="insertDateRange" size="10"></p>
+									<button id="slopeCalc" type="button"
+												class="btn btn-outline btn-primary btn-xs">Slope calculate</button> -->
 									<div id="negSlopeHead"><h5>Graph</h5></div>
 									<div id="drop" align="left"></div>
 								</div>
