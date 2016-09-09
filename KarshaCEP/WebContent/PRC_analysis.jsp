@@ -208,6 +208,22 @@
 												class="btn btn-outline btn-primary btn-xs">Slope calculate</button> -->
 									<div id="negSlopeHead"><h5>Graph</h5></div>
 									<div id="drop" align="left"></div>
+									<div id="slopeButtons">
+										<button id="slopeCalc1" type="button"
+													class="btn btn-outline btn-primary btn-xs">1 day gap</button>
+										<button id="slopeCalc2" type="button"
+													class="btn btn-outline btn-primary btn-xs">2 days gap</button>
+										<button id="slopeCalc3" type="button"
+													class="btn btn-outline btn-primary btn-xs">3 days gap</button>
+										<button id="slopeCalc4" type="button"
+													class="btn btn-outline btn-primary btn-xs">4 days gap</button>
+										<button id="slopeCalc5" type="button"
+													class="btn btn-outline btn-primary btn-xs">5 days gap</button>
+										<button id="slopeCalc6" type="button"
+													class="btn btn-outline btn-primary btn-xs">6 days gap</button>
+										<button id="slopeCalc7" type="button"
+													class="btn btn-outline btn-primary btn-xs">7 days gap</button>
+									</div>
 								</div>
 								
 							</div>
@@ -265,7 +281,7 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/d3.min.js"></script>
 		<script src="js/c3.js"></script>
-		
+
 		<script type="text/javascript">
 	   					$( "#2tabs_max_min" ).click(function() {
 	   						var myNode = document.getElementById("maxima_container");
@@ -302,6 +318,83 @@
 	   						var value_Lmin = $('#insertLmin').val();
 	   						//console.log("D: "+value_D+" d: "+value_d+"l: "+value_l+" L: "+value_L);
 	   						minimas_getData(permno_page,value_Dmin,value_dmin,value_Lmin,value_lmin);
+	   					});
+   					</script>
+   		<script type="text/javascript">
+	   					$( "#slopeCalc1" ).click(function() {
+	   						var myNode = document.getElementById("maxima_container");
+							while (myNode.firstChild) {
+							    myNode.removeChild(myNode.firstChild);
+							}
+							var testArr=[],testArr2=[];
+	   						var value_gap = 1;
+	   						intermediateSlopeData(testArr,testArr2,value_gap);
+	   					});
+   					</script>			
+   		<script type="text/javascript">
+	   					$( "#slopeCalc2" ).click(function() {
+	   						var myNode = document.getElementById("maxima_container");
+							while (myNode.firstChild) {
+							    myNode.removeChild(myNode.firstChild);
+							}
+							var testArr=[],testArr2=[];
+	   						var value_gap = 2;
+	   						intermediateSlopeData(testArr,testArr2,value_gap);
+	   					});
+   					</script>
+   		<script type="text/javascript">
+	   					$( "#slopeCalc3" ).click(function() {
+	   						var myNode = document.getElementById("maxima_container");
+							while (myNode.firstChild) {
+							    myNode.removeChild(myNode.firstChild);
+							}
+							var testArr=[],testArr2=[];
+	   						var value_gap = 3;
+	   						intermediateSlopeData(testArr,testArr2,value_gap);
+	   					});
+   					</script>
+   		<script type="text/javascript">
+	   					$( "#slopeCalc4" ).click(function() {
+	   						var myNode = document.getElementById("maxima_container");
+							while (myNode.firstChild) {
+							    myNode.removeChild(myNode.firstChild);
+							}
+							var testArr=[],testArr2=[];
+	   						var value_gap = 4;
+	   						intermediateSlopeData(testArr,testArr2,value_gap);
+	   					});
+   					</script>
+   		<script type="text/javascript">
+	   					$( "#slopeCalc5" ).click(function() {
+	   						var myNode = document.getElementById("maxima_container");
+							while (myNode.firstChild) {
+							    myNode.removeChild(myNode.firstChild);
+							}
+							var testArr=[],testArr2=[];
+	   						var value_gap = 5;
+	   						intermediateSlopeData(testArr,testArr2,value_gap);
+	   					});
+   					</script>
+   		<script type="text/javascript">
+	   					$( "#slopeCalc6" ).click(function() {
+	   						var myNode = document.getElementById("maxima_container");
+							while (myNode.firstChild) {
+							    myNode.removeChild(myNode.firstChild);
+							}
+							var testArr=[],testArr2=[];
+	   						var value_gap = 6;
+	   						intermediateSlopeData(testArr,testArr2,value_gap);
+	   					});
+   					</script>
+   		<script type="text/javascript">
+	   					$( "#slopeCalc7" ).click(function() {
+	   						var myNode = document.getElementById("maxima_container");
+							while (myNode.firstChild) {
+							    myNode.removeChild(myNode.firstChild);
+							}
+							var testArr=[],testArr2=[];
+	   						var value_gap = 7;
+	   						intermediateSlopeData(testArr,testArr2,value_gap);
 	   					});
    					</script>
    					

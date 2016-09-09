@@ -15,41 +15,54 @@ function StockPRC_graph(permno,id){
 	});
 }
 
+var globalDates=[], globalPrice=[];
+
 function negSlope_getdata(id,data,url,permno){
-	var url = "stockprice?PERMNO="+permno;
-	console.log("new element loaded: anushka uditha"+data);
+	console.log("new element loaded: "+data);
 	
 	$.ajax({
 		type : 'GET',
 		url : url,
 		dataType : 'json',
 		success : function(data) {
-			console.log("orginL :"+data);
-			var dates=[], Pprice=[], slope=[];
-			dates.push("x");
-			slope.push("Slope value");
+			console.log("original :"+data);
+			var dates=[], Pprice=[], slope=[], d=1;
+			//dates.push("x");
+			//slope.push("Slope value");
 			var sizeOfArr = Object.keys(data.AllDates).length;
-			for(var i=0; i<sizeOfArr; i++){
+			for(var i=0; i<sizeOfArr; i=i+d){
 				dates.push(data.AllDates[i]);
 				Pprice.push(data.PseudoPRC[i]);
 				//console.log(dates[i]);
 			}
-			for(var i=0; i<sizeOfArr; i++){
-				slope.push(Pprice[i+1]-Pprice[i]);
-				console.log(slope[i]);
-			}
-			draw_negSlope(dates,slope);
-			console.log(" new element loaded second:"+url);
-			},
-			error : function(data, error) {
-				console.log(error+"data doesnt loading correctly");
-			},
-			async : false
+			globalPrice=Pprice;
+			globalDates=dates;
+			intermediateSlopeData(dates,Pprice,d);
+		},
+		error : function(data, error) {
+			console.log(error+"data doesn't loading correctly");
+		},
+		async : false
 	});
 	//console.log(data);
 }
 
+function intermediateSlopeData(dates,Pprice,d){
+	var slope=[], newPprice=[], newDates=[];
+	slope.push("Slope values");
+	newDates.push("x");
+	for(var i=0; i<globalPrice.length; i=i+d){
+		newDates.push(globalDates[i]);
+		slope.push(globalPrice[i+d]-globalPrice[i]);
+		//console.log(slope[i]);
+	}
+	draw_negSlope(newDates,slope);
+}
+
+
+
 function draw_negSlope(dates,slope) {
+	console.log(slope);
 	console.log(dates);
 	var dates1 = dates;
 	var slope1  = slope;
@@ -60,7 +73,7 @@ function draw_negSlope(dates,slope) {
             x: 'x',
             xFormat: '%Y-%m-%d', // 'xFormat' can be used as custom format of 'x'
             columns: [
-                      dates1,slope1  
+                      dates1,slope1
             ]
         },
         size: {
@@ -247,7 +260,7 @@ function draw_maxima(data,id,count) {
                 tick: {
                     format: d3.format('.2f')
                 }
-            } ,
+            },
         },
         tooltip: {
             format: {
@@ -268,7 +281,6 @@ function draw_maxima(data,id,count) {
     .style('font-size', '1.4em')
     .text('Maxima - '+count);
 }
-
 
 function draw_minima(data,id,count) {
 	//console.log(data);
