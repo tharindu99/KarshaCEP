@@ -70,7 +70,7 @@ public class graph_predata extends DBopenConnection {
 		return stk_details;
 	}
 
-	public ArrayList<Stock_MinimaMaxima> Maxima_dataCollect(int PERMNO) {
+	public ArrayList<Stock_MinimaMaxima> M_dataCollect(int PERMNO) {
 		DBopen_me();
 		String Sql_maxima = "SELECT date,PRC,RET,SHROUT,VOL,PseudoPRC,PseudoPRCn,RawVol,Turnover FROM stock WHERE PERMNO="+PERMNO+";" ;
 		String Sql_count_maxima = "SELECT count(date) FROM stock WHERE PERMNO = "+PERMNO;	
@@ -103,7 +103,7 @@ public class graph_predata extends DBopenConnection {
 		else return a;	 
 	}
 
-	public String Maxima_collectData(String[][] maximaDates, int permno) {
+	public String M_collectData(String[][] maximaDates, int permno) {
 		String output = "[";
 		DBopen_me();
 		Gson gson = new Gson();
@@ -145,5 +145,13 @@ public class graph_predata extends DBopenConnection {
 		//System.out.println(output);
 		DBclose_me();
 		return arrlist_out.toString();
+	}
+
+	public Iterator siddhi_stream(int PERMNO) {
+		DBopen_me();
+		String Sql_stock_individual = "SELECT date,PRC,RET,SHROUT,VOL,PseudoPRC,PseudoPRCn,RawVol,Turnover FROM stock WHERE PERMNO="+PERMNO+";" ;
+		Iterator stk = session.createSQLQuery(Sql_stock_individual).list().iterator();
+		DBclose_me();
+		return stk;
 	}
 }
