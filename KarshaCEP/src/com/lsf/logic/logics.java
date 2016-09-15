@@ -74,6 +74,8 @@ public class logics {
 	}
 	
 	
+	
+	
 		
 	public ArrayList<Stock_MinimaMaxima> split_update(ArrayList<Stock_MinimaMaxima> stk_arr) {
 		for (int i = 0; i < stk_arr.size(); i++) {

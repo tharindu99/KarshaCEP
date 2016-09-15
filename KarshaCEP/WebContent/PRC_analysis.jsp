@@ -137,6 +137,8 @@
 			</div>
 			<div class="col-xs-12" style="height: 10px;"></div>
 			<div class="col-lg-12">
+			<!-- <div id="negSlopeHead"><h3>Negative slope</h3></div>
+			<div id="drop"></div> -->
 				<div class="panel panel-primary">
 					<div class="panel-heading">Maxima and Minima Calculation</div>
 					<div class="panel-body">
@@ -145,6 +147,7 @@
 								<ul class = "active">
 									<li><a href="#tabs_2" >Maxima calculator</a></li>
 									<li><a href="#tabs_3">Minima calculator</a></li>
+									<li><a href="#tabs_4">Negative slope</a></li>
 								</ul>
 							</div>
 							<div class="row">
@@ -152,7 +155,7 @@
 									<p>
 										Please click the following "calculate" button to calculate the
 										Maximas for this selected equity. &nbsp;<a href="#MAXIMA_calc"
-											data-toggle="modal">How Maxima calculation works. </a>
+											data-toggle="modal"><u>How Maxima calculation works. </u> </a>
 									</p>
 									
 									<div class="col-lg-6">
@@ -177,7 +180,7 @@
 									<p>
 										Please click the following "calculate" button to calculate the
 										Minimas for this selected equity. &nbsp;<a href="#MINIMA_calc"
-											data-toggle="modal">How Minima calculation works. </a>
+											data-toggle="modal"><u>How Minima calculation works. </u></a>
 									</p>
 									<div class="col-lg-6">
 										<form class="form-inline" role="form">
@@ -197,6 +200,32 @@
 										</form>
 									</div>
 								</div>
+								
+								<div id="tabs_4">
+									<!-- <p> Enter the range of the date which need to calculate the slope
+										<input type="number" class="form-control" id="insertDateRange" size="10"></p>
+									<button id="slopeCalc" type="button"
+												class="btn btn-outline btn-primary btn-xs">Slope calculate</button> -->
+									<div id="negSlopeHead"><h5>Graph</h5></div>
+									<div id="drop" align="left"></div>
+									<div id="slopeButtons">
+										<button id="slopeCalc1" type="button"
+													class="btn btn-outline btn-primary btn-xs">1 day gap</button>
+										<button id="slopeCalc2" type="button"
+													class="btn btn-outline btn-primary btn-xs">2 days gap</button>
+										<button id="slopeCalc3" type="button"
+													class="btn btn-outline btn-primary btn-xs">3 days gap</button>
+										<button id="slopeCalc4" type="button"
+													class="btn btn-outline btn-primary btn-xs">4 days gap</button>
+										<button id="slopeCalc5" type="button"
+													class="btn btn-outline btn-primary btn-xs">5 days gap</button>
+										<button id="slopeCalc6" type="button"
+													class="btn btn-outline btn-primary btn-xs">6 days gap</button>
+										<button id="slopeCalc7" type="button"
+													class="btn btn-outline btn-primary btn-xs">7 days gap</button>
+									</div>
+								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -252,7 +281,7 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/d3.min.js"></script>
 		<script src="js/c3.js"></script>
-		
+
 		<script type="text/javascript">
 	   					$( "#2tabs_max_min" ).click(function() {
 	   						var myNode = document.getElementById("maxima_container");
@@ -291,7 +320,84 @@
 	   						minimas_getData(permno_page,value_Dmin,value_dmin,value_Lmin,value_lmin);
 	   					});
    					</script>
-
+   		<script type="text/javascript">
+	   					$( "#slopeCalc1" ).click(function() {
+	   						var myNode = document.getElementById("maxima_container");
+							while (myNode.firstChild) {
+							    myNode.removeChild(myNode.firstChild);
+							}
+							var testArr=[],testArr2=[];
+	   						var value_gap = 1;
+	   						intermediateSlopeData(testArr,testArr2,value_gap);
+	   					});
+   					</script>			
+   		<script type="text/javascript">
+	   					$( "#slopeCalc2" ).click(function() {
+	   						var myNode = document.getElementById("maxima_container");
+							while (myNode.firstChild) {
+							    myNode.removeChild(myNode.firstChild);
+							}
+							var testArr=[],testArr2=[];
+	   						var value_gap = 2;
+	   						intermediateSlopeData(testArr,testArr2,value_gap);
+	   					});
+   					</script>
+   		<script type="text/javascript">
+	   					$( "#slopeCalc3" ).click(function() {
+	   						var myNode = document.getElementById("maxima_container");
+							while (myNode.firstChild) {
+							    myNode.removeChild(myNode.firstChild);
+							}
+							var testArr=[],testArr2=[];
+	   						var value_gap = 3;
+	   						intermediateSlopeData(testArr,testArr2,value_gap);
+	   					});
+   					</script>
+   		<script type="text/javascript">
+	   					$( "#slopeCalc4" ).click(function() {
+	   						var myNode = document.getElementById("maxima_container");
+							while (myNode.firstChild) {
+							    myNode.removeChild(myNode.firstChild);
+							}
+							var testArr=[],testArr2=[];
+	   						var value_gap = 4;
+	   						intermediateSlopeData(testArr,testArr2,value_gap);
+	   					});
+   					</script>
+   		<script type="text/javascript">
+	   					$( "#slopeCalc5" ).click(function() {
+	   						var myNode = document.getElementById("maxima_container");
+							while (myNode.firstChild) {
+							    myNode.removeChild(myNode.firstChild);
+							}
+							var testArr=[],testArr2=[];
+	   						var value_gap = 5;
+	   						intermediateSlopeData(testArr,testArr2,value_gap);
+	   					});
+   					</script>
+   		<script type="text/javascript">
+	   					$( "#slopeCalc6" ).click(function() {
+	   						var myNode = document.getElementById("maxima_container");
+							while (myNode.firstChild) {
+							    myNode.removeChild(myNode.firstChild);
+							}
+							var testArr=[],testArr2=[];
+	   						var value_gap = 6;
+	   						intermediateSlopeData(testArr,testArr2,value_gap);
+	   					});
+   					</script>
+   		<script type="text/javascript">
+	   					$( "#slopeCalc7" ).click(function() {
+	   						var myNode = document.getElementById("maxima_container");
+							while (myNode.firstChild) {
+							    myNode.removeChild(myNode.firstChild);
+							}
+							var testArr=[],testArr2=[];
+	   						var value_gap = 7;
+	   						intermediateSlopeData(testArr,testArr2,value_gap);
+	   					});
+   					</script>
+   					
 		<script type="text/javascript" src="js/graph/stockPrice_grp.js"></script>
 		<script type="text/javascript">
 						<%for(int i=1;i<stk_data.size();i++){%>
